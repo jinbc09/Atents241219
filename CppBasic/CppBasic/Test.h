@@ -12,4 +12,5 @@ public:
 
 	void Test_1219_InputOutput();
 	void Test_1219_DataType();
+	void Test_1219_ArithmeticOperator();
 };

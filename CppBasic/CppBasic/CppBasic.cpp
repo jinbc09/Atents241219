@@ -9,6 +9,8 @@ int main()  // main 함수(엔트리포인트)
 	Test day;
 	// day.Test_1219_InputOutput();
 	// day.Test_1219_DataType();
+	//day.Test_1219_ArithmeticOperator();
+	
 
 	
 
