@@ -1,17 +1,17 @@
 #include <iostream> // F12로 선언을 확인할 수 있다.
+#include "Test.h"
+
 
 using namespace std;    // std 네임스페이스를 기본적으로 사용한다고 표시
 
 int main()  // main 함수(엔트리포인트)
 {
-    int number = 10;
-    float fNumber = 10.0f;
+	Test day;
+	// day.Test_1219_InputOutput();
+	// day.Test_1219_DataType();
 
-    std::cin >> number;     // C++ 표준 입력 방식
-    //scanf_s("%d", &number);       
+	
 
-    std::cout << "Hello World! " << number <<"\n";  // C++의 표준 콘솔 출력 방식
-    printf("Hello World! %f\n", fNumber);   // C언어의 표준 출력 방식 (%d:정수, %f:실수)
 }
 
 // F5 : 디버그 모드로 시작
