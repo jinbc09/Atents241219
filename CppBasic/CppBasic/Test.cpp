@@ -506,6 +506,39 @@ void Test::Test_1220_Template()
 	int data6 = Clamp<int>(110, 0, 100);
 }
 
+void Test::Test_1220_Array()
+{
+	// 같은 종류의 데이터타입이 연속적으로 저장되어 있다.(빠르게 각 요소에 접근할 수 있다.)
+	int array1[5];
+	array1[0] = 1;
+	array1[1] = 10;
+	array1[2] = 7;
+	array1[3] = 5;
+	array1[4] = 20;
+
+	int array2[5] = { 1, 3, 5, 7, 9 };
+	//array2[5] = 10;	// 크기는 무조건 고정이다.(삽입/삭제가 어렵다)
+
+	int* array3 = array1;
+
+	int array4[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
+		{1,2,3},
+		{4,5,6},
+		{7,8,9},
+		{10,11,12}
+	};
+
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%d\n", array2[i]);
+	}
+
+	for (int num : array2)
+	{
+		printf("%d\n", num);
+	}
+}
+
 void TestFunction(int number1, float number2)	// 함수의 정의
 {
 	// 함수의 바디, 코드 블럭
