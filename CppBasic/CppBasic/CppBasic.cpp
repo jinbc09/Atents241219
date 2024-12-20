@@ -9,11 +9,12 @@ int main()  // main 함수(엔트리포인트)
 	Test day;
 	// day.Test_1219_InputOutput();
 	// day.Test_1219_DataType();
-	//day.Test_1219_ArithmeticOperator();
+	// day.Test_1219_ArithmeticOperator();
+	// day.Test_1220_Assignment();
+	// day.Test_1220_Comparison();
+	// day.Test_1220_Logical();
 	
-
 	
-
 }
 
 // F5 : 디버그 모드로 시작
