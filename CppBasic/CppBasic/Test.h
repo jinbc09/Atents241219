@@ -21,6 +21,7 @@ public:
 	void Test_1220_SlotMachine();
 	void Test_1220_RPS();
 	void Test_1220_Template();
+	void Test_1220_Array();
 };
 
 void TestFunction(int, float);	// 함수의 선언 : 리턴값의 타입, 함수 이름, 파라메터들(0개 이상 가능)

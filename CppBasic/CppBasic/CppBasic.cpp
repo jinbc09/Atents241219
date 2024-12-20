@@ -17,7 +17,19 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1220_SlotMachine();
 	// day.Test_1220_RPS();	
 
-	
+	// 포인터 : 메모리 주소를 저장하는 변수
+	int a = 10;
+	int* pAddress = nullptr;
+	pAddress = &a;	// 주소연산자 &로 a변수의 주소를 가져오기
+
+	int b = *pAddress;	// 간접참조연산자 *로 pAddress 주소에 들어있는 데이터를 int타입으로 가져오는 것
+
+	int array[5] = { 1,3,5,7,9 };
+
+	pAddress = array;
+
+	// pAddress + 1;	array[1]; 같은 동작
+	// *(pAddress + 5) = 30;	// 범위를 벗어나서 접근
 
 }
 
