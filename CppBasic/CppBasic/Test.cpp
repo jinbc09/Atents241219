@@ -321,3 +321,170 @@ void Test::Test_1220_ControlStatement()
 		printf("%d is odd.", j);	// 홀수는 홀수라고 출력하고 짝수는 아무것도 안함
 	}
 }
+
+void Test::Test_1220_SlotMachine()
+{
+	std::srand(std::time(0));
+
+	// 슬롯머신
+	// 처음에 돈을 걸고
+	// 랜덤으로 숫자를 3개 뽑아서 셋다 같은 숫자가 나오면 100배로 돌려주기
+	// 다시 처음으로
+
+	// 내가 보유하고 있는 돈
+	int money = 100000;
+	const int WinRate = 100;
+
+	while (money > 0)
+	{
+		// 현재 배팅한 돈
+		int bet = 0;
+		printf("Bet your money(%d) : ", money);
+		cin >> bet;	// 입력 받고
+
+		if (bet > 0 && bet <= money)
+		{
+			// 배팅 금액이 0보다 크고 현재 보유한 금액보다는 작아야 한다.
+			money -= bet;					// 배팅금액 빼기
+			printf("Spin slot!\n");
+			int num1 = std::rand() % 10;	// 0 ~ 9 사이를 랜덤으로 결정
+			int num2 = std::rand() % 10;
+			int num3 = std::rand() % 10;
+
+			// num1 = num2 = num3 = 7;
+			printf("Numbers : (%d) (%d) (%d)\n", num1, num2, num3);	// 랜덤 숫자 출력
+
+			if (num1 == num2 && num2 == num3)	// 1,2,3이 같은지 확인
+			{
+				int prize = bet * WinRate;		// 상금 결정
+				printf("Congratulation! You WIN!\n");
+				printf("You got (%d)\n", prize);
+				money += prize;	// 상금을 내 돈에 추가
+			}
+		}
+	}
+
+	printf("GAME OVER");
+}
+
+void Test::Test_1220_RPS()
+{
+	std::srand(std::time(0));
+
+	// 가위바위보
+	// 3선승
+
+	const int Rock = 1;
+	const int Paper = 2;
+	const int Scissors = 3;
+
+	int mySelection = 0;
+	string selectText = "";
+
+	int myWinCount = 0;
+	int enemyWinCount = 0;
+
+	while (myWinCount < 3 && enemyWinCount < 3)
+	{
+		while (mySelection < 1 || mySelection > 3)
+		{
+			printf("Select Rock(1) Paper(2) Scissors(3) : ");
+			cin >> mySelection;		// 나의 선택
+
+			switch (mySelection)
+			{
+			case 1:
+				selectText = "Rock";
+				break;
+			case 2:
+				selectText = "Paper";
+				break;
+			case 3:
+				selectText = "Scissors";
+				break;
+			default:
+				break;
+			}
+		}
+
+		printf("Your select is [%s]\n", selectText.c_str());	// 나의 선택 출력
+		int enemySelection = (rand() % 3) + 1;
+		switch (enemySelection)
+		{
+		case 1:
+			selectText = "Rock";
+			break;
+		case 2:
+			selectText = "Paper";
+			break;
+		case 3:
+			selectText = "Scissors";
+			break;
+		}
+		printf("Enemy select is [%s]\n", selectText.c_str());	// 나의 선택 출력
+
+		switch (mySelection)
+		{
+		case 1:
+			switch (enemySelection)
+			{
+			case 1:
+				// 무승부
+				printf("Draw\n");
+				break;
+			case 2:
+				// 적의 승리
+				enemyWinCount++;
+				printf("ENEMY WIN\n");
+				break;
+			case 3:
+				// 나의 승리
+				myWinCount++;
+				printf("YOU WIN\n");
+				break;
+			}
+			break;
+		case 2:
+			switch (enemySelection)
+			{
+			case 1:
+				// 나의 승리
+				myWinCount++;
+				printf("YOU WIN\n");
+				break;
+			case 2:
+				// 무승부
+				printf("Draw\n");
+				break;
+			case 3:
+				// 적의 승리
+				enemyWinCount++;
+				printf("ENEMY WIN\n");
+				break;
+			}
+			break;
+		case 3:
+			switch (enemySelection)
+			{
+			case 1:
+				// 적의 승리
+				enemyWinCount++;
+				printf("ENEMY WIN\n");
+				break;
+			case 2:
+				// 나의 승리
+				myWinCount++;
+				printf("YOU WIN\n");
+				break;
+			case 3:
+				// 무승부
+				printf("Draw\n");
+				break;
+			}
+			break;
+		}
+
+		printf("You : [%d], Enemy : [%d]\n", myWinCount, enemyWinCount);
+		mySelection = 0;
+	}
+}
