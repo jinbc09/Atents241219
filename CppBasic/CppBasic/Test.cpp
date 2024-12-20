@@ -1,5 +1,5 @@
-#include "Test.h"
 #include <iostream>
+#include "Test.h"
 
 // 정의부
 using namespace std;
@@ -489,8 +489,22 @@ void Test::Test_1220_RPS()
 	}
 }
 
+void Test::Test_1220_Template()
+{
+	int data = Add(1, 3);
+	float data2 = Add(1.5f, 3.3f);
 
+	int data3 = TemplateAdd<int>(10, 30);
+	float data4 = TemplateAdd<float>(10.5f, 2.6f);
 
+	// 이름 : Clamp
+	// 파라메터 : value, min, max
+	// 기능 : value가 min보다 적으면 min값, max보다 크면 max값, min~max 사이에 있으면 value를 리턴하는 함수
+	// 템플릿 함수이어야 한다.
+
+	int data5 = Clamp<int>(10, 0, 100);
+	int data6 = Clamp<int>(110, 0, 100);
+}
 
 void TestFunction(int number1, float number2)	// 함수의 정의
 {
@@ -521,8 +535,3 @@ float Add(float num1, float num2)
 	return num1 + num2;
 }
 
-template<typename T>
-T TemplateAdd(T num1, T num2)
-{
-	return num1 + num2;
-}

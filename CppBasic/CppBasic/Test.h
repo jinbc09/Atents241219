@@ -30,3 +30,28 @@ float Add(float num1, float num2);
 
 template <typename T>
 T TemplateAdd(T num1, T num2);
+
+template <typename T>
+T Clamp(T value, T min, T max);
+
+template<typename T>
+inline T TemplateAdd(T num1, T num2)
+{
+	return num1 + num2;
+}
+
+template<typename T>
+inline T Clamp(T value, T min, T max)
+{
+	T result = value;
+	if (value < min)
+	{
+		result = min;
+	}
+	if (value > max)
+	{
+		result = max;
+	}
+
+	return result;
+}
