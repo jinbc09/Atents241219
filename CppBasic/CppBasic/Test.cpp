@@ -234,3 +234,90 @@ void Test::Test_1220_Bitwise()
 
 
 }
+
+void Test::Test_1220_ControlStatement()
+{
+	// 제어문(Control Statement)
+	int a = 10;
+
+	// 조건문
+	if (a > 5)
+	{
+		// 조건이 true일 때 실행		
+	}
+	else
+	{
+		// 조건이 false일 때 실행
+	}
+
+	if (a < 5)
+	{
+		// a가 5보다 작으면 실행
+	}
+
+	if (a < 5)
+	{
+		// a가 5보다 작을 때 실행
+	}
+	else if (a < 10)
+	{
+		// a가 5보다 크거나 같고 10보다 작을 때 실행
+	}
+
+	printf("Input number : ");
+	cin >> a;
+	if (a % 2 == 0)
+	{
+		printf("%d is even.\n", a);
+	}
+	else
+	{
+		printf("%d is odd.\n", a);
+	}
+
+	switch (a)
+	{
+	case 1:
+	case 2:
+		printf("1\n");
+		printf("2\n");
+		break;
+	case 3:
+		printf("3\n");
+		break;
+	default:
+		printf("Default\n");
+		break;
+	}
+
+	// 반복문(Loop)
+	int i = 0;
+	while (i < 11)	// 조건을 확인하고 조건이 참이면 {} 안의 코드를 수행. 총 11번 실행
+	{
+		i++;
+	}
+
+	i = 0;
+	while (true)	// 무한 루프의 경우 루프를 탈출하는 조건을 반드시 설정해야 한다. 총 11번 실행
+	{
+		i++;
+		if (i > 10)
+		{
+			break;
+		}
+	}
+
+	i = 0;
+	do
+	{
+		i++;
+	} while (i < 11);		// 일단 {} 사이의 코드를 한번 실행하고 조건을 확인한 후 조건이 참이면 다시 실행. 총 10번 실행
+
+	for (int j = 0; j < 10; j++)	// j<10 조건을 확인하고 조건이 참이면 {}사이 코드 실행. 총 10번 실행
+	{
+		if (j % 2 == 0)		// 짝수는 처리하지 않고 스킵
+			continue;		// 이 이후의 코드는 실행하지 않고 loop의 시작점으로 돌아가기
+
+		printf("%d is odd.", j);	// 홀수는 홀수라고 출력하고 짝수는 아무것도 안함
+	}
+}
