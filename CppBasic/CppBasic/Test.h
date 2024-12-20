@@ -21,3 +21,12 @@ public:
 	void Test_1220_SlotMachine();
 	void Test_1220_RPS();
 };
+
+void TestFunction(int, float);	// 함수의 선언 : 리턴값의 타입, 함수 이름, 파라메터들(0개 이상 가능)
+int TestFunction2(int, float);
+
+int Add(int num1, int num2);
+float Add(float num1, float num2);
+
+template <typename T>
+T TemplateAdd(T num1, T num2);

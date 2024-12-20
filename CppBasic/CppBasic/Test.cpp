@@ -378,14 +378,14 @@ void Test::Test_1220_RPS()
 	const int Paper = 2;
 	const int Scissors = 3;
 
-	int mySelection = 0;
-	string selectText = "";
-
 	int myWinCount = 0;
 	int enemyWinCount = 0;
 
 	while (myWinCount < 3 && enemyWinCount < 3)
 	{
+		int mySelection = 0;
+		string selectText = "";
+
 		while (mySelection < 1 || mySelection > 3)
 		{
 			printf("Select Rock(1) Paper(2) Scissors(3) : ");
@@ -487,4 +487,42 @@ void Test::Test_1220_RPS()
 		printf("You : [%d], Enemy : [%d]\n", myWinCount, enemyWinCount);
 		mySelection = 0;
 	}
+}
+
+
+
+
+void TestFunction(int number1, float number2)	// 함수의 정의
+{
+	// 함수의 바디, 코드 블럭
+
+	// 함수가 실행할 기능들 구현
+
+	return;	// void는 return이 있어도 되고 없어도 된다.
+}
+
+int TestFunction2(int number1, float number2)
+{
+	if (number1 > 1)
+		return 1;
+
+	return number1 + number2;	// 함수의 종료지점
+
+	printf("Hello");	// 이 줄은 절대 실행되지 않는다.
+}
+
+int Add(int num1, int num2)
+{
+	return num1 + num2;
+}
+
+float Add(float num1, float num2)
+{
+	return num1 + num2;
+}
+
+template<typename T>
+T TemplateAdd(T num1, T num2)
+{
+	return num1 + num2;
 }
