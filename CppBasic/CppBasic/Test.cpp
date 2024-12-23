@@ -733,38 +733,6 @@ int MyStrCmp(char* str1, char* str2)
 	return result;
 }
 
-void MyParser(char* source, int* out, int count)
-{
-	// "1321,55,87,57,786"
-	// "1321" "55" "87" "57" "786"	// 5개의 토큰으로 나누기
-	// 1321 55 87 57 786			// 토큰을 int로 변환
-	// 변환한 것을 out에 담고 종료
-
-	char temp[32];
-	strcpy_s(temp, source);
-
-	char* find = strchr(temp, ',');
-	int size = find - temp;
-
-	char number[8];
-	strncpy_s(number, temp, size);
-
-	//out[0] = 
-
-	//find = strchr(find+1, ',');
-	//size = find - temp;
-}
-
-int MyAtoI(char* str)
-{
-	int length = strlen(str);
-	for (int i = 0; i < length; i++)
-	{
-		//str[i]
-	}
-	return 0;
-}
-
 /*
 int strcmp(const char *str1, const char *str2) {
 	while (*str1 && (*str1 == *str2)) {
@@ -774,6 +742,55 @@ int strcmp(const char *str1, const char *str2) {
 	return *(unsigned char*)str1 - *(unsigned char*)str2;
 }
 */
+
+void MyParser(char* source, int* out, int count)
+{
+	// "1321,55,87,57,786"
+	// "1321" "55" "87" "57" "786"	// 5개의 토큰으로 나누기
+	// 1321 55 87 57 786			// 토큰을 int로 변환
+	// 변환한 것을 out에 담고 종료
+
+	char* newStart = source;	// 토큰이 잘려지고 남은 부분(의 시작 주소)
+	char* find = nullptr;		// ','의 위치(주소)
+	int index = 0;				// count만큼 반복을 위한 변수 + out의 몇번째 인덱스인지
+	do
+	{
+		find = strchr(newStart, ',');	// ,가 있는 주소 찾기
+		int size = find - newStart;		// 글자의 자리수 확인
+
+		char number[8];
+		strncpy_s(number, newStart, size);	// 토큰 추출하기(글자로 된 숫자 뽑아내기)
+
+		out[index] = MyAtoI(number);		// 토큰을 int로 변환
+		newStart = find + 1;				// 새 시작위치 설정(,다음 위치)
+		index++;							// index 증가
+	} while (index < count && *find != '\0');	// index가 count 이상이거나 더 이상 ,가 없다면(find == '\0') 반복 중지
+}
+
+int MyAtoI(char* str)
+{
+	int sum = 0;
+	int length = strlen(str);	// str = "1234"
+	for (int i = 0; i < length; i++)
+	{
+		// (str[i] - 48) : 글자로 되어 있는 숫자를 int로 변경
+		// MyPow(10, length - 1 - i) : 몇번째 자리수인지(1000, 100, 10 등등)
+		sum += (str[i] - 48) * MyPow(10, length - 1 - i);
+	}
+	return sum;
+}
+
+int MyPow(int base, int exponent)
+{
+	int result = 1;
+	for (int i = 0; i < exponent; i++)
+	{
+		result *= base;
+	}
+
+	return result;
+}
+
 
 int Add(int num1, int num2)
 {

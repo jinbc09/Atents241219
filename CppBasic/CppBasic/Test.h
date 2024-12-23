@@ -36,6 +36,7 @@ int MyStrLen(char* str);
 int MyStrCmp(char* str1, char* str2);
 void MyParser(char* source, int* out, int count = 5);
 int MyAtoI(char* str);
+int MyPow(int base, int exponent);
 
 int Add(int num1, int num2);
 float Add(float num1, float num2);

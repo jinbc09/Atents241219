@@ -61,12 +61,20 @@ int main()  // main 함수(엔트리포인트)
 	memset(parseResult, 0, sizeof(int) * 5);
 	MyParser(raw, parseResult);
 
+	/*int pow = MyPow(10, 3);
+	pow = MyPow(10, 1);
+	pow = MyPow(10, 0);
+
+	int num = MyAtoI(const_cast<char*>("1234"));
+	num = MyAtoI(const_cast<char*>("14"));
+	num = MyAtoI(const_cast<char*>("1"));
+	num = MyAtoI(const_cast<char*>("12358"));*/
+
 	// 주말 과제
 	// 텍스트 미로탐색 게임 만들기
 	// 주변환경은 텍스트로만 표현
 	// 이동은 1~4를 입력받아서 처리
 	// 골인지점에 도착하면 게임 종료
-
 }
 
 // F5 : 디버그 모드로 시작
