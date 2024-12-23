@@ -20,6 +20,46 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1223_Reference();
 	// day.Test_1223_String();
 	
+	char str[16] = "12345";
+	int length = MyStrLen(str);
+	printf("Length : %d\n", length);
+
+	char str2[16] = "12345";
+	char str3[16] = "12345";
+	int result1 = MyStrCmp(str2, str3);
+	int result2 = strcmp(str2, str3);
+	printf("Cmp result : %d, %d\n", result1, result2);	// 0
+
+	char str4[16] = "12345";
+	char str5[16] = "12347";
+	result1 = MyStrCmp(str4, str5);
+	result2 = strcmp(str4, str5);
+	printf("Cmp result : %d, %d\n", result1, result2);		// -1
+
+	char str6[16] = "12347";
+	char str7[16] = "12345";
+	result1 = MyStrCmp(str6, str7);
+	result2 = strcmp(str6, str7);
+	printf("Cmp result : %d, %d\n", result1, result2);		// -1
+
+	char str8[16] = "1234";
+	char str9[16] = "12345";
+	result1 = MyStrCmp(str8, str9);
+	result2 = strcmp(str8, str9);
+	printf("Cmp result : %d, %d\n", result1, result2);		// -1
+
+	char str10[16] = "12345";
+	char str11[16] = "1234";
+	result1 = MyStrCmp(str10, str11);
+	result2 = strcmp(str10, str11);
+	printf("Cmp result : %d, %d\n", result1, result2);		// 1
+
+
+	// "1321,55,87,57,786" 파싱
+	char raw[32] = "1321,55,87,57,786";
+	int parseResult[5];
+	memset(parseResult, 0, sizeof(int) * 5);
+	MyParser(raw, parseResult);
 
 	// 주말 과제
 	// 텍스트 미로탐색 게임 만들기

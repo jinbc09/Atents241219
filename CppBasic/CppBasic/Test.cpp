@@ -647,8 +647,10 @@ void Test::Test_1223_String()
 	printf("Result : %d\n", result);
 
 	// 실습
-	// MyStrLen 함수 만들기 : strlen과 같은 기능을 한다.
-	// MyStrCmp 함수 만들기 : strcmp과 같은 기능을 한다.
+	// int MyStrLen(char*); 함수 만들기 : strlen과 같은 기능을 한다.
+	// int MyStrCmp(char*, char*); 함수 만들기 : strcmp과 같은 기능을 한다.
+
+	//"1321,55,87,57,786" 파싱
 }
 
 void TestFunction(int number1, float number2)	// 함수의 정의
@@ -682,6 +684,96 @@ void TestFuction4(int& data)
 {
 	printf("Referece data : %d", data);
 }
+
+int MyStrLen(char* str)
+{
+	int index = 0;
+	//while (str[index] != '\0')
+	while (*(str+index) != '\0')
+	{
+		index++;
+	}
+
+	return index;
+}
+
+int MyStrCmp(char* str1, char* str2)
+{
+	int result = 0;
+	int index = 0;
+	while (str1[index] != '\0' && str2[index] != '\0')		// !(str1[index] == '\0' || str2[index] == '\0')
+	{
+		if (str1[index] == str2[index])
+		{
+			index++;
+		}
+		else if (str1[index] > str2[index])
+		{
+			return 1;	// 위치의 글자가 다르다.
+		}
+		else if (str1[index] < str2[index])
+		{
+			return -1;	// 위치의 글자가 다르다.
+		}
+	}
+
+	if (str1[index] == '\0' && str2[index] == '\0')
+	{
+		result = 0;		// 글자의 자리수가 같다.
+	}
+	else if (str1[index] == '\0')
+	{
+		result = -1;	// 글자의 자리수가 다르다.
+	}
+	else if (str2[index] == '\0')
+	{
+		result = 1;		// 글자의 자리수가 다르다.
+	}
+	
+	return result;
+}
+
+void MyParser(char* source, int* out, int count)
+{
+	// "1321,55,87,57,786"
+	// "1321" "55" "87" "57" "786"	// 5개의 토큰으로 나누기
+	// 1321 55 87 57 786			// 토큰을 int로 변환
+	// 변환한 것을 out에 담고 종료
+
+	char temp[32];
+	strcpy_s(temp, source);
+
+	char* find = strchr(temp, ',');
+	int size = find - temp;
+
+	char number[8];
+	strncpy_s(number, temp, size);
+
+	//out[0] = 
+
+	//find = strchr(find+1, ',');
+	//size = find - temp;
+}
+
+int MyAtoI(char* str)
+{
+	int length = strlen(str);
+	for (int i = 0; i < length; i++)
+	{
+		//str[i]
+	}
+	return 0;
+}
+
+/*
+int strcmp(const char *str1, const char *str2) {
+	while (*str1 && (*str1 == *str2)) {
+		str1++;
+		str2++;
+	}
+	return *(unsigned char*)str1 - *(unsigned char*)str2;
+}
+*/
 
 int Add(int num1, int num2)
 {
