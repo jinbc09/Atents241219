@@ -22,10 +22,14 @@ public:
 	void Test_1220_RPS();
 	void Test_1220_Template();
 	void Test_1220_Array();
+	void Test_1223_Pointer();
+	void Test_1223_Reference();
 };
 
 void TestFunction(int, float);	// 함수의 선언 : 리턴값의 타입, 함수 이름, 파라메터들(0개 이상 가능)
 int TestFunction2(int, float);
+void TestFuction3(int* data, int size);
+void TestFuction4(int& data);
 
 int Add(int num1, int num2);
 float Add(float num1, float num2);
@@ -57,3 +61,4 @@ inline T Clamp(T value, T min, T max)
 
 	return result;
 }
+

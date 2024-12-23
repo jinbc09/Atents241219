@@ -16,30 +16,10 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1220_ControlStatement();
 	// day.Test_1220_SlotMachine();
 	// day.Test_1220_RPS();	
+	// day.Test_1223_Pointer();
+	// day.Test_1223_Reference();
+	
 
-	// 포인터 : 메모리 주소를 저장하는 변수
-	int a = 10;
-	int* pAddress = nullptr;
-	pAddress = &a;	// 주소연산자 &로 a변수의 주소를 가져오기
-
-	int b = *pAddress;	// 간접참조연산자 *로 pAddress 주소에 들어있는 데이터를 int타입으로 가져오는 것
-
-	int array[5] = { 1,3,5,7,9 };
-	int array2[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
-		{1,2,3},
-		{4,5,6},
-		{7,8,9},
-		{10,11,12}
-	};
-
-	pAddress = array;
-	pAddress += 1;	// int의 byte 사이즈만큼 증가
-	pAddress = &array2[0][0];	// 배열의 시작지점의 주소를 pAddress에 주기
-	// 디버그로 볼때 조사식에 아래처럼 설정해야 구조를 확인하기 쉽다
-	// (int(*)[3])pAddress,4
-
-	// pAddress + 1;	array[1]; 같은 동작
-	// *(pAddress + 5) = 30;	// 범위를 벗어나서 접근
 
 	// 주말 과제
 	// 텍스트 미로탐색 게임 만들기

@@ -539,6 +539,69 @@ void Test::Test_1220_Array()
 	}
 }
 
+void Test::Test_1223_Pointer()
+{
+	// 포인터 : 메모리 주소를 저장하는 변수
+	int a = 10;
+	int* pAddress = nullptr;
+	pAddress = &a;	// 주소연산자 &로 a변수의 주소를 가져오기
+
+	int b = *pAddress;	// 간접참조연산자 *로 pAddress 주소에 들어있는 데이터를 int타입으로 가져오는 것
+
+	int size = sizeof(int*);
+
+	int array[5] = { 1,3,5,7,9 };
+	int array2[4][3] = {	// 배열은 뒤에서부터 해석(3개짜리가 4개 있다.)
+		{1,2,3},
+		{4,5,6},
+		{7,8,9},
+		{10,11,12}
+	};
+
+	pAddress = array;
+	pAddress += 1;	// int의 byte 사이즈만큼 증가
+	pAddress = &array2[0][0];	// 배열의 시작지점의 주소를 pAddress에 주기
+	// 디버그로 볼때 조사식에 아래처럼 설정해야 구조를 확인하기 쉽다
+	// (int(*)[3])pAddress,4
+
+	// pAddress + 1;	array[1]; 같은 동작
+	// *(pAddress + 5) = 30;	// 범위를 벗어나서 접근
+
+	int* mem = (int*)malloc(sizeof(int) * 5);	// C스타일의 메모리 할당. int 5개 크기로 메모리를 할당받음
+	free(mem);			// C스타일의 메모리 해제
+	mem = nullptr;		// 메모리가 해제되었다는 표시용
+
+	mem = new int;		// C++ 스타일의 메모리 할당
+	delete mem;			// C++ 스타일의 메모리 해제
+	mem = new int[5];
+	delete[] mem;		// 배열일 경우는 delete도 배열로
+	mem = nullptr;
+
+	mem = new int[5] {2, 4, 6, 8, 10};
+
+	TestFuction3(array, 5);
+	TestFuction3(mem, 5);
+
+	delete[] mem;
+	mem = nullptr;
+}
+
+void Test::Test_1223_Reference()
+{
+	// 참조(Reference)
+	int number = 10;
+	int& ref = number;	// 참조는 반드시 참조하는 대상이 초기화 되어야 한다.
+	ref = 5;			// number도 같이 수정된다.
+
+	//int& ref2 = 10;		// 임시 값은 참조대상이 될 수 없다.
+
+	// int&&
+	// std::forward;
+	// std::move;
+
+	TestFuction4(number);
+}
+
 void TestFunction(int number1, float number2)	// 함수의 정의
 {
 	// 함수의 바디, 코드 블럭
@@ -556,6 +619,19 @@ int TestFunction2(int number1, float number2)
 	return number1 + number2;	// 함수의 종료지점
 
 	printf("Hello");	// 이 줄은 절대 실행되지 않는다.
+}
+
+void TestFuction3(int* data, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		printf("Pointer data %d : %d\n", i, data[i]);
+	}
+}
+
+void TestFuction4(int& data)
+{
+	printf("Referece data : %d", data);
 }
 
 int Add(int num1, int num2)
