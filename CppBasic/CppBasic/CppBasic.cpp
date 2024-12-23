@@ -1,5 +1,6 @@
 #include <iostream> // F12로 선언을 확인할 수 있다.
 #include "Test.h"
+#include "Animal.h"
 
 using namespace std;    // std 네임스페이스를 기본적으로 사용한다고 표시
 
@@ -19,8 +20,28 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1223_Pointer();
 	// day.Test_1223_Reference();
 	// day.Test_1223_String();
+	// day.Test_1223_StringPractice();
 	
-	
+	// 클래스 : 객체의 데이터와 동작을 표현한 것
+	MyClass a;
+	a.height = 180;
+
+	Animal* animal = new Animal();
+	animal->Cry();
+
+	/*Dog* dog = new Dog();
+	dog->Cry();*/
+	Animal* dog = new Dog();
+	dog->Cry();		// Cry가 일반 함수라면 현재 자신의 타입을 기준으로 함수가 실행됨
+					// Cry가 가상 함수라면 자신의 인스턴스 기준으로 함수가 실행됨
+
+
+
+	delete dog;
+	dog = nullptr;
+
+	delete animal;
+	animal = nullptr;
 
 	// 주말 과제
 	// 텍스트 미로탐색 게임 만들기

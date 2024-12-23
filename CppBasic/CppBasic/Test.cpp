@@ -706,6 +706,27 @@ void Test::Test_1223_StringPractice()
 	num = MyAtoI(const_cast<char*>("12358"));*/
 }
 
+void Test::Test_1223_Structure()
+{
+	//MyStruct st = { 1, 10.0f, 5, 20 };
+	//st.x = 10;
+	//st.y = 20;
+	//float result = TestStruct1(st);
+	//result = TestStruct2(&st);
+	//result = TestStruct3(st);
+	//st.x;
+
+	//MyStruct* pSt = new MyStruct(1, 10.0f, 5, 20.0f);
+	//pSt->damage = 100;
+
+	Vector2D a = { 1,2 };
+	Vector2D b = { 5,3 };
+	Vector2D c = a + b;
+	c = a - b;
+	c = a * 2;
+	c = a / 2;
+}
+
 void TestFunction(int number1, float number2)	// 함수의 정의
 {
 	// 함수의 바디, 코드 블럭
@@ -842,6 +863,24 @@ int MyPow(int base, int exponent)
 	}
 
 	return result;
+}
+
+float TestStruct1(MyStruct st)
+{	
+	st.x *= 2;
+	return st.x + st.y + st.damage + st.height;
+}
+
+float TestStruct2(MyStruct* st)
+{
+	st->x *= 2;
+	return st->x + st->y + st->damage + st->height;
+}
+
+float TestStruct3(MyStruct& st)
+{
+	st.x *= 2;
+	return st.x + st.y + st.damage + st.height;
 }
 
 
