@@ -25,6 +25,7 @@ public:
 	void Test_1223_Pointer();
 	void Test_1223_Reference();
 	void Test_1223_String();
+	void Test_1223_StringPractice();
 };
 
 void TestFunction(int, float);	// 함수의 선언 : 리턴값의 타입, 함수 이름, 파라메터들(0개 이상 가능)
