@@ -18,8 +18,8 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1220_RPS();	
 	// day.Test_1223_Pointer();
 	// day.Test_1223_Reference();
+	// day.Test_1223_String();
 	
-
 
 	// 주말 과제
 	// 텍스트 미로탐색 게임 만들기

@@ -602,6 +602,55 @@ void Test::Test_1223_Reference()
 	TestFuction4(number);
 }
 
+void Test::Test_1223_String()
+{
+	// 캐스팅
+	int i = 3.14f;		// 암시적 캐스팅
+	int j = (int)3.14f;	// 명시적 캐스팅
+
+	int k = static_cast<int>(3.14f);	// C++ 스타일. 컴파일타임에 캐스팅 수행. 
+	// dynamic_cast	// 상속구조에서 런타임에 안전하게 데이터 캐스팅을 수행.
+	// const_cast	// const또는 volatile 속성을 추가하거나 제거할 때 사용. 주로 상수성 제거용
+	// reinterpret_cast // 포인터 타입간에 강제 변환용(매우 위험). C스타일 캐스팅에 가까움
+
+	const char* str = "abcde";						// 문자열의 마지막은 '\0'으로 끝난다.
+	char* str2 = const_cast<char*>("abcde");
+	char str3[10] = "abcde";
+	char* str4 = new char[10];
+	memset(str4, 0, sizeof(char) * 10);				// 특정 포인터가 가리키는 메모리 위치에서 크기만큼 특정 값을 채우는 함수	
+	strcpy_s(str4, 10, "abcde");
+	printf("str : %s\n", str2);
+	char* str5 = (char*)malloc(sizeof(char) * 10);
+	strcpy_s(str5, 10, "abcde");
+
+	free(str5);
+	str5 = nullptr;
+	delete[] str4;	// 먼저 할당한 것이 나중에 해제되어야 한다.
+	str4 = nullptr;
+
+	//char str6[5] = "abcde";	// \0를 포함해 6개짜리 문자열이다.
+
+	int size = strlen(str);		// 문자열의 길이를 리턴하는 함수
+	printf("str : %s, length : %d\n", str, size);
+
+	strcpy_s(str3, "Hello");	// 소스문자열을 목표 주소에 복사
+	printf("str3 : %s\n", str3);
+
+	strcat_s(str3, " W\n");		// 소스문자열을 목표 주소에 있는 문자열 마지막에 덧붙인다.
+	printf("str3 : %s\n", str3);
+
+	int result = strcmp("abc", "abc");	// 같으면 리턴이 0, 
+	printf("Result : %d\n", result);
+	result = strcmp("abc", "ab");		// 1
+	printf("Result : %d\n", result);
+	result = strcmp("ab", "abc");		// -1
+	printf("Result : %d\n", result);
+
+	// 실습
+	// MyStrLen 함수 만들기 : strlen과 같은 기능을 한다.
+	// MyStrCmp 함수 만들기 : strcmp과 같은 기능을 한다.
+}
+
 void TestFunction(int number1, float number2)	// 함수의 정의
 {
 	// 함수의 바디, 코드 블럭
