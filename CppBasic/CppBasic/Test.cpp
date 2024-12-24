@@ -808,6 +808,30 @@ void Test::Test_1224_List()
 	list.Print();
 }
 
+void Test::Test_1224_BST()
+{
+	BinarySearchTree tree;
+	tree.Clear();
+
+	tree.Insert(3, -1);
+	tree.Insert(1, -1);
+	tree.Insert(2, -1);
+	tree.Insert(5, -1);
+	tree.Insert(4, -1);
+	tree.PrintInOrder();
+	tree.Delete(3);
+	tree.PrintInOrder();
+	tree.Delete(2);
+	tree.PrintInOrder();
+	tree.Delete(5);
+	tree.PrintInOrder();
+	TreeNode* node = tree.Search(1);
+	node = tree.Search(5);
+
+
+	tree.Clear();
+}
+
 void TestFunction(int number1, float number2)	// 함수의 정의
 {
 	// 함수의 바디, 코드 블럭
