@@ -20,7 +20,7 @@ enum LandType
 
 enum TestType
 {
-	None
+	None2
 };
 
 // enum class

@@ -2,6 +2,7 @@
 #include "MyStruct.h"
 #include "MyClass.h"
 #include "enums.h"
+#include "LinkedList.h"
 
 #define PI 3.141592		// 매크로 : 컴파일 할 때 PI라는 글자가 3.141592로 자동 변경된다.
 
