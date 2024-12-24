@@ -1,4 +1,7 @@
 // 선언부
+#include <vector>
+#include <list>
+#include <map>
 #include "MyStruct.h"
 #include "MyClass.h"
 #include "enums.h"
@@ -35,6 +38,8 @@ public:
 	void Test_1224_Class();
 	void Test_1224_Enum();
 	void Test_1224_List();
+	void Test_1224_BST();
+	void Test_1224_STL();
 };
 
 void TestFunction(int, float);	// 함수의 선언 : 리턴값의 타입, 함수 이름, 파라메터들(0개 이상 가능)
