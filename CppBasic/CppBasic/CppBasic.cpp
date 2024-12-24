@@ -35,8 +35,16 @@ int main()  // main 함수(엔트리포인트)
 	dog->Cry();		// Cry가 일반 함수라면 현재 자신의 타입을 기준으로 함수가 실행됨
 					// Cry가 가상 함수라면 자신의 인스턴스 기준으로 함수가 실행됨
 
+	Animal* cat = new Cat();
+	cat->Cry();
 
+	// 가상함수 
+	// 가상함수가 있는 클래스는 가상 테이블(Virtual Table)이 추가된다.
+	// 가상테이블에는 가상함수(virtual)들의 주소가 기록되어 있다.
+	// 가상함수들이 호출될때는 가상테이블에 기록된 함수의 주소로 점프한 다음 실행이 된다.
 
+	delete cat;
+	cat = nullptr;
 	delete dog;
 	dog = nullptr;
 
