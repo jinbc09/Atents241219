@@ -22,39 +22,7 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1223_String();
 	// day.Test_1223_StringPractice();
 	
-	LinkedList list;
-	list.Add(10);
-	list.Add(20);
-	list.Add(30);	
-	list.Print();
-
-	list.Insert(25, 2);
-	list.Print();
-	list.Insert(5, 0);
-	list.Print();
-	list.Insert(100, 100);
-	list.Print();
-	list.Insert(33, 1);
-	list.Print();
-
-	list.Remove(33);
-	list.Print();
-	list.Remove(100);
-	list.Print();
-	list.Remove(5);
-	list.Print();
-
-	list.RemoveAt(1);
-	list.Print();
-	list.RemoveAt(10);
-	list.Print();
-
-
-	list.Clear();
-	list.Print();
-
-	list.Insert(5, 0);
-	list.Print();
+	
 
 
 	// 주말 과제
