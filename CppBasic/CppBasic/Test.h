@@ -1,6 +1,7 @@
 // 선언부
 #include "MyStruct.h"
 #include "MyClass.h"
+#include "enums.h"
 
 #define PI 3.141592		// 매크로 : 컴파일 할 때 PI라는 글자가 3.141592로 자동 변경된다.
 
@@ -29,6 +30,8 @@ public:
 	void Test_1223_String();
 	void Test_1223_StringPractice();
 	void Test_1223_Structure();
+	void Test_1224_Class();
+	void Test_1224_Enum();
 };
 
 void TestFunction(int, float);	// 함수의 선언 : 리턴값의 타입, 함수 이름, 파라메터들(0개 이상 가능)

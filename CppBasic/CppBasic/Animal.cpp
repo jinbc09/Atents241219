@@ -35,5 +35,6 @@ void Dog::Cry()
 
 void Cat::Cry()
 {
+	Animal::Cry();
 	printf("Cat : Mew! Mew!\n");
 }

@@ -22,34 +22,6 @@ int main()  // main 함수(엔트리포인트)
 	// day.Test_1223_String();
 	// day.Test_1223_StringPractice();
 	
-	// 클래스 : 객체의 데이터와 동작을 표현한 것
-	MyClass a;
-	a.height = 180;
-
-	Animal* animal = new Animal();
-	animal->Cry();
-
-	/*Dog* dog = new Dog();
-	dog->Cry();*/
-	Animal* dog = new Dog();
-	dog->Cry();		// Cry가 일반 함수라면 현재 자신의 타입을 기준으로 함수가 실행됨
-					// Cry가 가상 함수라면 자신의 인스턴스 기준으로 함수가 실행됨
-
-	Animal* cat = new Cat();
-	cat->Cry();
-
-	// 가상함수 
-	// 가상함수가 있는 클래스는 가상 테이블(Virtual Table)이 추가된다.
-	// 가상테이블에는 가상함수(virtual)들의 주소가 기록되어 있다.
-	// 가상함수들이 호출될때는 가상테이블에 기록된 함수의 주소로 점프한 다음 실행이 된다.
-
-	delete cat;
-	cat = nullptr;
-	delete dog;
-	dog = nullptr;
-
-	delete animal;
-	animal = nullptr;
 
 	// 주말 과제
 	// 텍스트 미로탐색 게임 만들기
