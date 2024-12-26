@@ -22,7 +22,7 @@ void ConsoleDoubleBuffer::Initialize()
 	SetConsoleCursorInfo(hBuffer[1], &consoleCursor);				// 커서 설번
 
 	bufferIndex = 0;					// 시작 버퍼의 인덱스
-	hConsole = hBuffer[bufferIndex];	// 현재 버퍼 설정
+	hFront = hBuffer[bufferIndex];		// 현재 버퍼 설정
 	hBackground = hBuffer[bufferIndex + 1];	// 백그라운드 버퍼 설정
 }
 
@@ -35,13 +35,13 @@ void ConsoleDoubleBuffer::Destroy()
 	hBuffer[0] = nullptr;
 	hBuffer[1] = nullptr;
 
-	hConsole = nullptr;
+	hFront = nullptr;
 	hBackground = nullptr;
 }
 
 void ConsoleDoubleBuffer::Render(const char* renderData)
 {
-	ClearBuffer();	// 이전 내용 모두 제거
+	ClearBuffer();	// 백그라운드의 이전 내용 모두 제거
 
 	DWORD written;	// 글자를 쓸 때 몇글자를 실제로 썼는지 받아오는 변수
 	WriteFile(hBackground, renderData, (DWORD)strlen(renderData), &written, NULL);	// renderData에 있는 글자를 모두 hBackground에 기록
@@ -60,9 +60,9 @@ void ConsoleDoubleBuffer::ClearBuffer()
 
 void ConsoleDoubleBuffer::BufferFlip()
 {
-	hBackground = hConsole;				// hConsole를 백그라운드로 설정
+	hBackground = hFront;				// 프론트를 백그라운드로 설정
 	bufferIndex = bufferIndex ? 0 : 1;	// ?앞에 조건이 참이면 : 앞에 있는 값, 거짓이면 : 뒤에 있는 값		
 	//bufferIndex = ~bufferIndex;
-	hConsole = hBuffer[bufferIndex];
-	SetConsoleActiveScreenBuffer(hConsole);
+	hFront = hBuffer[bufferIndex];		// 백그라운드를 새 프론트로 설정
+	SetConsoleActiveScreenBuffer(hFront);	// 새 프론트를 활성화
 }

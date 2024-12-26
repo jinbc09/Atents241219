@@ -17,8 +17,8 @@ public:
 	void Render(const char* renderData);
 
 private:
-	// 현재 콘솔의 핸들(더블 버퍼링용 버퍼 중 어떤 것이 보이고 있는지)
-	HANDLE hConsole = nullptr;
+	// 현재 앞에서 보여질 콘솔의 핸들(더블 버퍼링용 버퍼 중 어떤 것이 보이고 있는지)
+	HANDLE hFront = nullptr;
 
 	// 뒤에서 그려지는 콘솔의 핸들
 	HANDLE hBackground = nullptr;
@@ -35,7 +35,7 @@ private:
 	// 버퍼의 세로 크기
 	const int BUFFER_HEIGHT = 30;
 
-	// 버퍼를 빈칸으로 채우는 함수
+	// 백그라운드 버퍼를 빈칸으로 채우는 함수
 	void ClearBuffer();
 
 	// 버퍼 플립 함수
