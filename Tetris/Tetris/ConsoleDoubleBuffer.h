@@ -36,7 +36,7 @@ private:
 	const int BUFFER_HEIGHT = 30;
 
 	// 백그라운드 버퍼를 빈칸으로 채우는 함수
-	void ClearBuffer();
+	void ClearBuffer() const;
 
 	// 버퍼 플립 함수
 	void BufferFlip();

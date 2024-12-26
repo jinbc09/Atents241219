@@ -49,7 +49,7 @@ void ConsoleDoubleBuffer::Render(const char* renderData)
 	BufferFlip();	// 버퍼 변경
 }
 
-void ConsoleDoubleBuffer::ClearBuffer()
+void ConsoleDoubleBuffer::ClearBuffer() const
 {
 	COORD pos{ 0, 0 };
 	DWORD written = 0;

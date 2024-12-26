@@ -1,16 +1,21 @@
 #include <iostream>
 #include "ConsoleDoubleBuffer.h"
+#include "Logger.h"
 
 #include "Test.h"
 
-#define _TEST_MODE	1	// Å×½ºÆ® ÄÚµå Æ÷ÇÔ/Á¦°Å¿ë µðÆÄÀÎ
+#define _TEST_MODE	1	// í…ŒìŠ¤íŠ¸ ì½”ë“œ í¬í•¨/ì œê±°ìš© ë””íŒŒì¸
 
 void main()
 {
-#ifdef _TEST_MODE		// _TEST_MODEÀÌ µðÆÄÀÎµÇ¾î ÀÖÀ¸¸é ÄÄÆÄÀÏ·¯¿¡¼­ Æ÷ÇÔ, µÇ¾î ÀÖÁö ¾ÊÀ¸¸é ÄÄÆÄÀÏ·¯¿¡¼­ Æ÷ÇÔÇÏÁö ¾ÊÀ½
+#ifdef _TEST_MODE		// _TEST_MODEì´ ë””íŒŒì¸ë˜ì–´ ìžˆìœ¼ë©´ ì»´íŒŒì¼ëŸ¬ì—ì„œ í¬í•¨, ë˜ì–´ ìžˆì§€ ì•Šìœ¼ë©´ ì»´íŒŒì¼ëŸ¬ì—ì„œ í¬í•¨í•˜ì§€ ì•ŠìŒ
 	Test test;
-	test.Test_Output();
+	test.Test_Output();	
+	test.Test_Input();	// ë‚´ë¶€ì—ì„œ ë¬´í•œ ë£¨í”„ë¥¼ ëŒë¦°ë‹¤.
+
+
 #endif // _TEST_MODE
+
 
 	ConsoleDoubleBuffer* pDoubleBuffer = new ConsoleDoubleBuffer();
 	pDoubleBuffer->Initialize();
