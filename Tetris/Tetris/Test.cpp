@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include <map>
 #include "Test.h"
 #include "Logger.h"
 
@@ -65,11 +66,11 @@ void Test::Test_Functional()
 	int x = 10;
 	func2 = [x]() {
 		Logger::Print("Test Lambda Func\n");
-		
+		// 만들어지는 타이밍에 x가 캡쳐된다.
 		};
 
 	x = 20;
-	func2();
+	func2();	// x는 10으로 처리
 
 	[x]() -> float {
 		Logger::Print("Test Lambda Func\n");
@@ -89,14 +90,62 @@ void Test::Test_Input_Functional()
 	// 오른쪽 : 람다 함수 실행
 	
 	// 각각의 함수는 Logger로 방향 출력하기
+	// 도전 : 누르기와 때기 구분하기
+	std::map<int, std::function<void()>> actions;
+	actions[VK_UP] = std::bind(&Test::Test_Up, this);
+	actions[VK_DOWN] = std::bind(&Test::Test_Down, this);
+	actions[VK_LEFT] = []() {
+		Logger::Print("Left press\n");
+	};
+	actions[VK_RIGHT] = []() {
+		Logger::Print("Right press\n");
+	};
+
+	bool isUpPress = false;
+
+	while (true)
+	{
+		if (GetAsyncKeyState(VK_UP) & 0x8000)	//UP키가 눌려져 있으면 true, 아니면 false
+		{
+			if (isUpPress == false)	
+			{
+				// 안눌려져 있다가 이제 눌려졌다.
+				isUpPress = true;
+				actions[VK_UP]();	// 눌린 직후에만 실행
+			}
+		}
+		else
+		{
+			if (isUpPress == true)
+			{
+				// 눌려져 있다가 이제 떨어졌다.
+				isUpPress = false;
+				actions[VK_UP]();	// 떨어진 직후에만 실행
+			}
+		}
+
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		{
+			actions[VK_DOWN]();
+		}
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		{
+			actions[VK_LEFT]();
+		}
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		{
+			actions[VK_RIGHT]();
+		}
+	}
 }
 
 void Test::Test_Up()
 {
-	
+	Logger::Print("Up press\n");
 }
 
 void Test::Test_Down()
 {
+	Logger::Print("Down press\n");
 }
 
