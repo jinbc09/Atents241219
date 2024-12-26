@@ -15,6 +15,8 @@ public:
 	inline float GetDeltaTime() const { return deltaTime; }	// inline 함수 : 컴파일 타임에 코드 교체가 일어남
 
 private:
+	GameManager() = default;
+
 	// 이전 프레임에서 지금 프레임 간의 시간 간격(초 단위)
 	float deltaTime = 0.0f;	
 
@@ -23,5 +25,7 @@ private:
 	Input* pInput = nullptr;
 
 	clock_t lastTime = -1;
+
+	friend class Singleton;		// Singleton 클래스는 private맴버나 protected 맴버에 접근 가능
 };
 
