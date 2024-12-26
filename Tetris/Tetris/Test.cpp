@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Windows.h>
+#include <functional>
 #include <map>
 #include "Test.h"
 #include "Logger.h"

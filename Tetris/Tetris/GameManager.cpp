@@ -10,7 +10,7 @@ void GameManager::Initialize()
 	pInput = new Input();
 	systems[1] = pInput;
 
-	for (auto sys : systems)
+	for (System* sys : systems)
 	{
 		if (sys != nullptr)
 		{
@@ -41,7 +41,7 @@ bool GameManager::Loop()
 
 void GameManager::Destroy()
 {
-	for (auto sys : systems)
+	for (System* sys : systems)
 	{
 		if (sys != nullptr)
 		{
