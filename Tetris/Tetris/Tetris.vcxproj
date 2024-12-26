@@ -134,6 +134,7 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common.h" />
     <ClInclude Include="ConsoleDoubleBuffer.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Input.h" />
