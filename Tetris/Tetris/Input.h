@@ -1,9 +1,11 @@
 #pragma once
-class Input
+#include "System.h"
+
+class Input : public System
 {
 public:
-	void Initialize();
-	void Destroy();
-	void Update(float deltaTime);
+	virtual void Initialize() override;
+	virtual void Destroy() override;
+	virtual void Update(float deltaTime) override;
 };
 

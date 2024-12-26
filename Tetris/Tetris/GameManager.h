@@ -1,5 +1,7 @@
 #pragma once
+#include <ctime>
 #include "Singleton.h"
+#include "System.h"
 #include "ConsoleDoubleBuffer.h"
 #include "Input.h"
 
@@ -10,13 +12,16 @@ public:
 	bool Loop();
 	void Destroy();
 
-	float GetDeltaTime() const { return deltaTime; }
+	inline float GetDeltaTime() const { return deltaTime; }	// inline 함수 : 컴파일 타임에 코드 교체가 일어남
 
 private:
 	// 이전 프레임에서 지금 프레임 간의 시간 간격(초 단위)
 	float deltaTime = 0.0f;	
 
+	System* systems[2] = { nullptr, };
 	ConsoleDoubleBuffer* pRenderer = nullptr;
 	Input* pInput = nullptr;
+
+	clock_t lastTime = -1;
 };
 

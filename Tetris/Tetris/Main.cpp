@@ -1,7 +1,5 @@
 #include <iostream>
-#include "ConsoleDoubleBuffer.h"
-#include "Logger.h"
-
+#include "GameManager.h"
 #include "Test.h"
 
 #define _TEST_MODE	1	// 테스트 코드 포함/제거용 디파인
@@ -16,18 +14,13 @@ void main()
 
 #endif // _TEST_MODE
 
-
-	ConsoleDoubleBuffer* pDoubleBuffer = new ConsoleDoubleBuffer();
-	pDoubleBuffer->Initialize();
+	GameManager& manager = GameManager::Get();
+	manager.Initialize();
 
 	while (true)
 	{
-		pDoubleBuffer->Render("Hello World!!!");
+		manager.Loop();
 	}
 
-	pDoubleBuffer->Destroy();
-	delete pDoubleBuffer;
-	pDoubleBuffer = nullptr;
-
-	
+	manager.Destroy();	
 }

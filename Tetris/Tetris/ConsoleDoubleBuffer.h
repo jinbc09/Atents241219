@@ -1,14 +1,15 @@
 #pragma once
 #include <Windows.h>
+#include "System.h"
 
-class ConsoleDoubleBuffer
+class ConsoleDoubleBuffer : public System
 {
 public:
 	// 초기화용 함수(버퍼 생성)
-	void Initialize();
+	virtual void Initialize() override;
 
 	// 정리용 함수(버퍼 삭제)
-	void Destroy();
+	virtual void Destroy() override;
 
 	/// <summary>
 	/// 텍스트를 랜더링(그리기)하는 함수
