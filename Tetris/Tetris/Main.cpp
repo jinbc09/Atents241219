@@ -4,7 +4,7 @@
 
 #define _TEST_MODE	1	// 테스트 코드 포함/제거용 디파인
 
-void main()
+int main()
 {
 	SetConsoleOutputCP(CP_UTF8);
 	SetConsoleCP(CP_UTF8);
@@ -15,13 +15,15 @@ void main()
 	//test.Test_Input();	// 내부에서 무한 루프를 돌린다.
 	test.Test_Logger();
 	test.Test_Functional();
-	test.Test_Input_Functional();	// 내부에서 무한 루프 돌린다.
-
-
+	//test.Test_Input_Functional();	// 내부에서 무한 루프 돌린다.	
 #endif // _TEST_MODE
 
 	GameManager& manager = GameManager::Get();
 	manager.Initialize();
+
+#ifdef _TEST_MODE		
+	test.Test_Input_System();
+#endif
 
 	while (true)
 	{
@@ -31,4 +33,5 @@ void main()
 	manager.Destroy();	
 
 	
+	return 0;
 }

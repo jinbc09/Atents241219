@@ -14,6 +14,24 @@ public:
 
 	inline float GetDeltaTime() const { return deltaTime; }	// inline 함수 : 컴파일 타임에 코드 교체가 일어남
 
+	// 입력 시스템 함수 래핑
+	inline void BindPressInput(KeyType type, Action func) {
+		pInput->BindPress(type, func);
+	}
+	inline void BindReleaseInput(KeyType type, Action func) {
+		pInput->BindRelease(type, func);
+	}
+	template <typename T>
+	inline void BindPressInput(KeyType type, void (T::* func)(), T* obj)
+	{
+		pInput->BindPress(type, func, obj);
+	}
+	template <typename T>
+	inline void BindReleaseInput(KeyType type, void (T::* func)(), T* obj)
+	{
+		pInput->BindRelease(type, func, obj);
+	}
+
 private:
 	GameManager() = default;
 

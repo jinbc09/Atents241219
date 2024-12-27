@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <functional>
 #include <map>
+#include "GameManager.h"
 #include "Test.h"
 #include "Logger.h"
 
@@ -138,6 +139,13 @@ void Test::Test_Input_Functional()
 			actions[VK_RIGHT]();
 		}
 	}
+}
+
+void Test::Test_Input_System()
+{
+	GameManager::Get().BindPressInput(KeyType::Left, []() { Logger::Print("Left press\n"); });
+	GameManager::Get().BindReleaseInput(KeyType::Left, []() { Logger::Print("Left up\n"); });
+	GameManager::Get().BindPressInput(KeyType::Spin, &Test::Test_Up, this);
 }
 
 void Test::Test_Up()

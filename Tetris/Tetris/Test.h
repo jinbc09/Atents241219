@@ -8,6 +8,7 @@ public:
 	void Test_Logger();
 	void Test_Functional();
 	void Test_Input_Functional();
+	void Test_Input_System();
 
 
 private:
