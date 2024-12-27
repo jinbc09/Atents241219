@@ -9,6 +9,7 @@ public:
 	void Test_Functional();
 	void Test_Input_Functional();
 	void Test_Input_System();
+	// 배경 그리기
 
 
 private:
