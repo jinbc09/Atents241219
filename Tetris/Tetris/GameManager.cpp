@@ -3,14 +3,15 @@
 
 void GameManager::Initialize()
 {
-	memset(systems, 0, sizeof(systems));
-
 	SetConsoleFont(L"MS Gothic", 16, 16);	
 
+	systems.reserve(4);
 	pRenderer = new ConsoleDoubleBuffer();
-	systems[0] = pRenderer;
+	systems.push_back(pRenderer);
 	pInput = new Input();
-	systems[1] = pInput;
+	systems.push_back(pInput);
+	pStage = new Stage();
+	systems.push_back(pStage);
 
 	for (System* sys : systems)
 	{
@@ -35,7 +36,7 @@ bool GameManager::Loop()
 		}
 	}
 	
-	pRenderer->Render("Hello World");	// 업데이트 된 결과에 따라 그리기
+	pRenderer->Render(pStage->GetRenderText());	// 업데이트 된 결과에 따라 그리기
 	Sleep(10);	// 10 마이크로 세컨드 동안 정지
 
 	return true;
@@ -51,10 +52,12 @@ void GameManager::Destroy()
 		}
 	}
 
-	int size = sizeof(systems) / sizeof(System*);
+	int size = systems.size();
 	for (int i = 0; i < size; i++)
 	{
 		delete systems[i];		// 시스템 메모리 해제
 		systems[i] = nullptr;
 	}
+	systems.clear();
+
 }

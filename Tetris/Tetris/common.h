@@ -18,7 +18,7 @@ using Action = std::function<void()>;
 enum class CellType : char
 {
 	Blank = 0,		// 빈칸
-	Background,		// 테두리
+	Border,			// 테두리
 	Block,			// 테트로미노 블록(떨어지고 있는 블록)
 	Line,			// 바닥에 쌓인 블록
 };
