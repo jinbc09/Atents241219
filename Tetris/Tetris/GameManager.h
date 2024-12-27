@@ -47,21 +47,7 @@ private:
 	clock_t lastTime = -1;
 
 
-	void SetConsoleFont(const wchar_t* fontName, SHORT sizeX, SHORT sizeY)
-	{
-		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-
-		CONSOLE_FONT_INFOEX cfi;
-		cfi.cbSize = sizeof(CONSOLE_FONT_INFOEX);
-		cfi.nFont = 0;
-		cfi.dwFontSize.X = sizeX;
-		cfi.dwFontSize.Y = sizeY;
-		cfi.FontFamily = FF_DONTCARE;
-		cfi.FontWeight = FW_NORMAL;
-		wcscpy_s(cfi.FaceName, fontName);
-
-		SetCurrentConsoleFontEx(hConsole, FALSE, &cfi);
-	}
+	void SetConsoleFont(const wchar_t* fontName, SHORT sizeX, SHORT sizeY);
 
 
 	friend class Singleton;		// Singleton 클래스는 private맴버나 protected 맴버에 접근 가능

@@ -10,7 +10,7 @@ public:
 	void Test_Input_Functional();
 	void Test_Input_System();
 	// 배경 그리기
-
+	void Test_Tetromino();
 
 private:
 	void Test_Up();

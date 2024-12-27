@@ -5,6 +5,8 @@
 #include "GameManager.h"
 #include "Test.h"
 #include "Logger.h"
+#include "Tetromino.h"
+#include "MinoI.h"
 
 void Test::Test_Output()
 {
@@ -146,6 +148,36 @@ void Test::Test_Input_System()
 	GameManager::Get().BindPressInput(KeyType::Left, []() { Logger::Print("Left press\n"); });
 	GameManager::Get().BindReleaseInput(KeyType::Left, []() { Logger::Print("Left up\n"); });
 	GameManager::Get().BindPressInput(KeyType::Spin, &Test::Test_Up, this);
+}
+
+void Test::Test_Tetromino()
+{
+	MinoI* pMino = new MinoI();
+	pMino->Initialize();
+
+	const CellType* pCellType = pMino->GetData();
+	const Position* pPositions = pMino->GetMinos();
+
+	pMino->Spin();
+	pCellType = pMino->GetData();
+	pPositions = pMino->GetMinos();
+
+	pMino->Spin();
+
+	pCellType = pMino->GetData();
+	pPositions = pMino->GetMinos();
+	pMino->Spin();
+
+	pCellType = pMino->GetData();
+	pPositions = pMino->GetMinos();
+	pMino->Spin();
+
+	pCellType = pMino->GetData();
+	pPositions = pMino->GetMinos();
+
+	pMino->Destroy();
+	delete pMino;
+	pMino = nullptr;
 }
 
 void Test::Test_Up()
