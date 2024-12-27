@@ -6,6 +6,9 @@
 
 void main()
 {
+	SetConsoleOutputCP(CP_UTF8);
+	SetConsoleCP(CP_UTF8);
+
 #ifdef _TEST_MODE		// _TEST_MODE이 디파인되어 있으면 컴파일러에서 포함, 되어 있지 않으면 컴파일러에서 포함하지 않음
 	Test test;
 	test.Test_Output();	

@@ -5,6 +5,8 @@ void GameManager::Initialize()
 {
 	memset(systems, 0, sizeof(systems));
 
+	SetConsoleFont(L"MS Gothic", 16, 16);	
+
 	pRenderer = new ConsoleDoubleBuffer();
 	systems[0] = pRenderer;
 	pInput = new Input();

@@ -7,7 +7,7 @@
 
 void Test::Test_Output()
 {
-	printf("한글");
+	printf("한글 □ ■");
 	OutputDebugString(L"Print~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 	OutputDebugStringA("Print-------------------------\n");
 }
