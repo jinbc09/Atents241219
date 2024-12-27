@@ -18,14 +18,13 @@ void Tetromino::Destroy()
 
 void Tetromino::Spin()
 {
-	// spinIndex 1증가
-	// spinIndex는 0 ~ 3이 계속 반복된다.
+	spinIndex++;			// spinIndex 1증가
+	spinIndex %= SpinCount;	// spinIndex는 0 ~ 3의 범위를 가진다.
 }
 
 void Tetromino::ReverseSpin()
 {
-	// spinindex 1감소
-	// spinIndex는 0 ~ 3이 계속 반복된다.
+	spinIndex = (spinIndex + SpinCount - 1) % SpinCount;	// spinindex 1감소 + spinIndex는 0~3의 범위를 가진다.
 }
 
 void Tetromino::CollectPositions()

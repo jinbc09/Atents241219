@@ -45,3 +45,11 @@ private:
 	void CollectPositions();
 };
 
+// 테트로미노의 종류
+// I
+// J
+// L
+// O
+// S
+// T
+// Z
