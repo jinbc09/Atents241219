@@ -7,6 +7,7 @@
 #include "Logger.h"
 #include "Tetromino.h"
 #include "MinoI.h"
+#include "MinoJ.h"
 
 void Test::Test_Output()
 {
@@ -152,7 +153,7 @@ void Test::Test_Input_System()
 
 void Test::Test_Tetromino()
 {
-	MinoI* pMino = new MinoI();
+	Tetromino* pMino = new MinoJ();
 	pMino->Initialize();
 
 	const CellType* pCellType = pMino->GetData();

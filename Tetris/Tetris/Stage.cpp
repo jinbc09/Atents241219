@@ -21,8 +21,7 @@ void Stage::DataToText()
 {
 	// 배경 데이터 넣기
 	// StageBackground에 있는 데이터를 canvas로 (sizeof(CellType) * FullWidth * FullHeight)만큼 복사
-	memcpy(canvas, StageBackground, sizeof(CellType) * FullWidth * FullHeight);	
-	
+	memcpy(canvas, StageBackground, sizeof(CellType) * FullWidth * FullHeight);		
 
 	// 라인 데이터 넣기
 

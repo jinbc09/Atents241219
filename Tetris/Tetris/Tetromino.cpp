@@ -47,6 +47,7 @@ void Tetromino::CollectPositions()
 	int size = width * height;			// 테트로미노의 크기(파생클래스 별로 다름)
 	for (int i = 0; i < SpinCount; i++)	// 방향별로 처리
 	{
+		index = 0;						// index 초기화
 		for (int j = 0; j < size; j++)
 		{
 			if (*(data[i] + j) == CellType::Block)	// i방향일때 j번째 칸이 Block인지 확인
@@ -58,6 +59,4 @@ void Tetromino::CollectPositions()
 			}
 		}
 	}
-
-	int i = 0;
 }

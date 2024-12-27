@@ -39,6 +39,4 @@ void MinoI::OnInitialize()
 		data[i] = new CellType[size];
 		memcpy(data[i], mino[i], sizeof(CellType) * size);	// 임시 데이터를 data에 복사
 	}
-
-	int i = 0;
 }
