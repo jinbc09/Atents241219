@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <functional>
 #include <map>
+#include <random>
 #include "GameManager.h"
 #include "Test.h"
 #include "Logger.h"
@@ -181,6 +182,13 @@ void Test::Test_Tetromino()
 	pMino = nullptr;
 }
 
+void Test::Test_Random()
+{
+	std::mt19937 generator(std::random_device());			// 난수 생성기를 만들기
+	std::uniform_real_distribution<float> dis(0.0f, 1.0f);	// 난수 분포 결정(실수값 float 0.0 ~ 1.0 사이)
+	float random = dis(generator);							// 랜덤한 숫자 하나 가져오기
+}
+
 void Test::Test_Up()
 {
 	Logger::Print("Up press\n");
@@ -190,4 +198,6 @@ void Test::Test_Down()
 {
 	Logger::Print("Down press\n");
 }
+
+
 
