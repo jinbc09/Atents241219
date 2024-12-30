@@ -12,6 +12,7 @@ public:
 	void Reset();
 
 	inline const Tetromino* GetCurrent() const { return current; }
+	inline const Position& GetCurrentPosition() const { return currentPosition; }
 private:
 	enum class MinoType : char
 	{
@@ -33,5 +34,7 @@ private:
 
 	// 현재 스테이지에서 보이는 테트로미노
 	Tetromino* current = nullptr;
+
+	Position currentPosition;
 };
 

@@ -6,6 +6,7 @@
 #include "MinoS.h"
 #include "MinoT.h"
 #include "MinoZ.h"
+#include "Stage.h"
 
 void DropBlock::Initialize()
 {
@@ -49,7 +50,10 @@ void DropBlock::Reset()
 
 	current = GetRandomTetromino();
 
-
+	currentPosition = { 
+		static_cast<int>((Stage::GetStageWidth() - current->GetWidth()) / 2),
+		static_cast<int>(Stage::GetSpawnHeight() - current->GetHeight())
+	};
 }
 
 Tetromino* DropBlock::GetRandomTetromino()

@@ -12,6 +12,10 @@ public:
 
 	inline const char* GetRenderText() const { return renderText; }
 
+	inline static const unsigned int GetStageWidth() { return StageWidth; }
+	inline static const unsigned int GetStageHeight() { return StageHeight; }
+	inline static const unsigned int GetSpawnHeight() { return SpawnHeight; }
+
 private:
 	// 매 프레임마다 데이터를 문자열로 변경해서 renderText에 저장하는 함수
 	void DataToText();
@@ -99,7 +103,11 @@ private:
 
 	const char* enumToChar[4] = { "  ", "▒▒", "□", "■" };
 
+	// 현재 떨어질 블럭
 	DropBlock* pDropBlock = nullptr;
+
+	// 게임 내 원점
+	const Position Origin = { 1, 0 };
 	
 };
 

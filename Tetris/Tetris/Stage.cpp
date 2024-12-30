@@ -42,9 +42,12 @@ void Stage::DataToText()
 
 	// 블록 데이터 넣기
 	 const Position* pPositions = pDropBlock->GetCurrent()->GetMinos();
+	 const Position position = Origin + pDropBlock->GetCurrentPosition();	// 원점에 드랍블럭의 위치 더하기
 	 for (int i = 0; i < Tetromino::TetroCount; i++)
 	 {
-		 canvas[pPositions[i].y][pPositions[i].x] = CellType::Block;
+		 int x = position.x + pPositions[i].x;
+		 int y = position.y + pPositions[i].y;
+		 canvas[y][x] = CellType::Block;
 	 }
 
 	// 텍스트로 변경하기
