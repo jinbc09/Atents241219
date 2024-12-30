@@ -184,9 +184,15 @@ void Test::Test_Tetromino()
 
 void Test::Test_Random()
 {
-	std::mt19937 generator(std::random_device());			// 난수 생성기를 만들기
+	std::random_device rd;									// 시드값용 난수 생성기 만들기
+	std::mt19937 generator(rd());							// 실제 사용할 난수 생성기를 만들기
 	std::uniform_real_distribution<float> dis(0.0f, 1.0f);	// 난수 분포 결정(실수값 float 0.0 ~ 1.0 사이)
 	float random = dis(generator);							// 랜덤한 숫자 하나 가져오기
+
+	//while (true)
+	//{
+	//	random = dis(generator);
+	//}	
 }
 
 void Test::Test_Up()

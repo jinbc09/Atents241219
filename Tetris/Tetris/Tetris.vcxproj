@@ -139,6 +139,7 @@
     <ClCompile Include="MinoS.cpp" />
     <ClCompile Include="MinoT.cpp" />
     <ClCompile Include="MinoZ.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="Tetromino.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="MinoS.h" />
     <ClInclude Include="MinoT.h" />
     <ClInclude Include="MinoZ.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="System.h" />

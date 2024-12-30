@@ -17,6 +17,7 @@ int main()
 	test.Test_Functional();
 	//test.Test_Input_Functional();	// 내부에서 무한 루프 돌린다.	
 	test.Test_Tetromino();
+	test.Test_Random();
 #endif // _TEST_MODE
 
 	GameManager& manager = GameManager::Get();
