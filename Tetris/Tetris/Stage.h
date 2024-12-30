@@ -1,6 +1,7 @@
 #pragma once
 #include "System.h"
 #include "common.h"
+#include "DropBlock.h"
 
 class Stage : public System
 {
@@ -97,6 +98,8 @@ private:
 	// Line			"■"
 
 	const char* enumToChar[4] = { "  ", "▒▒", "□", "■" };
+
+	DropBlock* pDropBlock = nullptr;
 	
 };
 

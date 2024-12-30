@@ -156,24 +156,24 @@ void Test::Test_Tetromino()
 	Tetromino* pMino = new MinoJ();
 	pMino->Initialize();
 
-	const CellType* pCellType = pMino->GetData();
+	//const CellType* pCellType = pMino->GetData();
 	const Position* pPositions = pMino->GetMinos();
 
 	pMino->Spin();
-	pCellType = pMino->GetData();
+	//pCellType = pMino->GetData();
 	pPositions = pMino->GetMinos();
 
 	pMino->Spin();
 
-	pCellType = pMino->GetData();
+	//pCellType = pMino->GetData();
 	pPositions = pMino->GetMinos();
 	pMino->Spin();
 
-	pCellType = pMino->GetData();
+	//pCellType = pMino->GetData();
 	pPositions = pMino->GetMinos();
 	pMino->Spin();
 
-	pCellType = pMino->GetData();
+	//pCellType = pMino->GetData();
 	pPositions = pMino->GetMinos();
 
 	pMino->Destroy();

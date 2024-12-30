@@ -57,6 +57,9 @@
     <ClCompile Include="MinoZ.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="DropBlock.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Test.h">
@@ -108,6 +111,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="MinoZ.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DropBlock.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
