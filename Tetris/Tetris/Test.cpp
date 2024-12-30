@@ -198,6 +198,8 @@ void Test::Test_Random()
 	Random random1(10);
 	//Random random2 = 10;	// explicit로 막을 수 있다.
 
+	GameManager::Get().BindPressInput(KeyType::Test, &GameManager::Test_Stage_7Bag, &GameManager::Get());
+
 }
 
 void Test::Test_Up()

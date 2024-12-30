@@ -7,6 +7,7 @@
 #include "MinoT.h"
 #include "MinoZ.h"
 #include "Stage.h"
+#include "Random.h"
 
 void DropBlock::Initialize()
 {
@@ -23,6 +24,8 @@ void DropBlock::Initialize()
 	{
 		mino->Initialize();
 	}
+
+	bag.reserve(static_cast<int>(MinoType::NUM_OF_TYPES));	// 테트로미노 종류만큼 캐퍼시티 확보
 
 	Reset();
 }
@@ -58,5 +61,13 @@ void DropBlock::Reset()
 
 Tetromino* DropBlock::GetRandomTetromino()
 {
-	return tetrominos[0];
+	if (bag.empty())					// 가방이 비었으면
+	{
+		bag.assign({ 0,1,2,3,4,5,6 });	// 0~6까지 가방에 넣기
+		Random::Get().Shuffle(bag);		// 가방 안의 항목들을 섞기
+	}
+	int index = bag[0];			// 가방의 첫번째 값을 복사하기
+	bag.erase(bag.begin());		// 가방의 첫번째 항목을 삭제하기
+	
+	return tetrominos[index];	// 꺼낸 값을 인덱스로 사용해서 테트로미노 리턴
 }

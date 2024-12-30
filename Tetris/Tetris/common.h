@@ -10,6 +10,7 @@ enum class KeyType : char
 	SoftDrop,	// 빠르게 떨어지게 하는 키
 	HardDrop,	// 바닥으로 즉시 떨어지게 하는 키
 	Esc,		// Esc키
+	Test,		// 테스트용
 	NUM_OF_KEYTYPE	// 키 종류가 몇개인지
 };
 

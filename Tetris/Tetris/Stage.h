@@ -16,6 +16,8 @@ public:
 	inline static const unsigned int GetStageHeight() { return StageHeight; }
 	inline static const unsigned int GetSpawnHeight() { return SpawnHeight; }
 
+	inline void Test_7Bag() { pDropBlock->Reset(); }
+
 private:
 	// 매 프레임마다 데이터를 문자열로 변경해서 renderText에 저장하는 함수
 	void DataToText();

@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "Tetromino.h"
 
 class DropBlock
@@ -35,6 +36,9 @@ private:
 	// 현재 스테이지에서 보이는 테트로미노
 	Tetromino* current = nullptr;
 
+	// current의 현재 위치
 	Position currentPosition;
+
+	std::vector<int> bag;
 };
 
