@@ -32,6 +32,9 @@ private:
 	/// <returns>true면 이동할 수 있는 위치에 있다. false면 이동 불가능한 위치에 있다.</returns>
 	bool CheckValidPosition(const DropBlock& block);
 
+	// 하드드랍 처리용 함수
+	void HardDropProcess(const DropBlock& block);
+
 	static const unsigned int StageWidth = 10;		// 게임 판의 가로 길이
 	static const unsigned int StageHeight = 20;		// 게임 판의 세로 길이
 

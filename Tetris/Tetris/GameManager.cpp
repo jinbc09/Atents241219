@@ -25,6 +25,8 @@ void GameManager::Initialize()
 	DropBlock* pDropBlock = pStage->GetDropBlock();
 	pInput->BindPress(KeyType::Left, &DropBlock::MoveLeft, pDropBlock);		
 	pInput->BindPress(KeyType::Right, &DropBlock::MoveRight, pDropBlock);
+	pInput->BindPress(KeyType::Spin, &DropBlock::Spin, pDropBlock);
+	pInput->BindPress(KeyType::HardDrop, &DropBlock::HardDrop, pDropBlock);
 
 	lastTime = clock();
 }

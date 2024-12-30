@@ -11,6 +11,8 @@ void Stage::Initialize()
 	pDropBlock->Initialize();
 
 	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
+	pDropBlock->onSpin = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
+	pDropBlock->onHardDrop = std::bind(&Stage::HardDropProcess, this, std::placeholders::_1);
 }
 
 void Stage::Destroy()
@@ -86,4 +88,16 @@ bool Stage::CheckValidPosition(const DropBlock& block)
 	}
 
 	return isSuccess;
+}
+
+void Stage::HardDropProcess(const DropBlock& block)
+{
+	// block을 바닥까지 내리기
+	//		바닥 찾기(stage의 바닥이거나 라인에 처음 닿는 부분)
+	// 바닥에 닿은 block을 라인에 추가하기
+	//		한줄이 가득 찼는지 확인
+	//			해당 줄 삭제
+	//			삭제된 줄 윗줄을 모두 아래로 내리기
+	//		게임 오버가 되었는지 안되었는지 체크
+	// block 리셋
 }

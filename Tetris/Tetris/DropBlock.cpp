@@ -82,6 +82,23 @@ void DropBlock::MoveRight()
 	}
 }
 
+void DropBlock::Spin()
+{
+	current->Spin();
+	if (onSpin && !onSpin(*this) )
+	{
+		current->ReverseSpin();	// 돌렸을 때 적절하지 않는 위치가 있으면 다시 되돌리기
+	}
+}
+
+void DropBlock::HardDrop()
+{
+	if (onHardDrop)
+	{
+		onHardDrop(*this);		// 등록된 리스너가 있으면 실행
+	}
+}
+
 Tetromino* DropBlock::GetRandomTetromino()
 {
 	if (bag.empty())					// 가방이 비었으면
