@@ -9,6 +9,7 @@
 #include "Tetromino.h"
 #include "MinoI.h"
 #include "MinoJ.h"
+#include "Random.h"
 
 void Test::Test_Output()
 {
@@ -192,7 +193,11 @@ void Test::Test_Random()
 	//while (true)
 	//{
 	//	random = dis(generator);
-	//}	
+	//}
+	
+	Random random1(10);
+	//Random random2 = 10;	// explicit로 막을 수 있다.
+
 }
 
 void Test::Test_Up()

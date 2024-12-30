@@ -6,7 +6,10 @@ class Random : public Singleton<Random>
 {
 public:
 	// 생성자(random_device를 이용해 시드값 설정)
+	Random() : generator(std::random_device()()) {}
+
 	// 시드값을 입력 받는 생성자
+	explicit Random(unsigned int seed) : generator(seed) {}	// explicit : 명시적 변환만 허용. 가독성을 높이고 불필요한 암시적변환을 방지
 	
 	/// <summary>
 	/// 새 시드값 설정하기
@@ -24,6 +27,9 @@ public:
 	/// <returns>랜덤한 정수</returns>
 	int GetRandom(int maxExclude)
 	{
+		// 균등분포로 처리
+		std::uniform_int_distribution<int> dis(0, maxExclude - 1);	// 파라메터로 입력받은 갯수만큼 처리하기 위해
+		return dis(generator);
 	}
 
 	/// <summary>
@@ -34,6 +40,8 @@ public:
 	/// <returns>min~max 범위의 정수</returns>
 	int GetRandomInRange(int minInclude, int maxInclude)
 	{
+		std::uniform_int_distribution<int> dis(minInclude, maxInclude);
+		return dis(generator);
 	}
 
 	/// <summary>
@@ -42,7 +50,8 @@ public:
 	/// <returns>0~1사이의 값</returns>
 	float GetRandomFloat()
 	{
-
+		std::uniform_real_distribution<float> dis(0.0f, 1.0f);
+		return dis(generator);
 	}
 
 	/// <summary>
