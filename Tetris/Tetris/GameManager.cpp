@@ -20,6 +20,12 @@ void GameManager::Initialize()
 			sys->Initialize();
 		}
 	}
+
+	// 드랍블록의 함수와 입력을 바인딩하기
+	DropBlock* pDropBlock = pStage->GetDropBlock();
+	pInput->BindPress(KeyType::Left, &DropBlock::MoveLeft, pDropBlock);		
+	pInput->BindPress(KeyType::Right, &DropBlock::MoveRight, pDropBlock);
+
 	lastTime = clock();
 }
 

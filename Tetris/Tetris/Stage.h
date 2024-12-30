@@ -15,12 +15,22 @@ public:
 	inline static const unsigned int GetStageWidth() { return StageWidth; }
 	inline static const unsigned int GetStageHeight() { return StageHeight; }
 	inline static const unsigned int GetSpawnHeight() { return SpawnHeight; }
+	inline DropBlock* GetDropBlock() const { return pDropBlock; }
 
+#ifdef _TEST_MODE
 	inline void Test_7Bag() { pDropBlock->Reset(); }
+#endif
 
 private:
 	// 매 프레임마다 데이터를 문자열로 변경해서 renderText에 저장하는 함수
 	void DataToText();
+
+	/// <summary>
+	/// block이 현재 존재 할 수 있는 위치에 있는지 체크하는 함수
+	/// </summary>
+	/// <param name="block">체크할 블록</param>
+	/// <returns>true면 이동할 수 있는 위치에 있다. false면 이동 불가능한 위치에 있다.</returns>
+	bool CheckValidPosition(const DropBlock& block);
 
 	static const unsigned int StageWidth = 10;		// 게임 판의 가로 길이
 	static const unsigned int StageHeight = 20;		// 게임 판의 세로 길이

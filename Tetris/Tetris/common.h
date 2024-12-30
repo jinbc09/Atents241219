@@ -1,5 +1,8 @@
 #pragma once
 #include <functional>
+#include "Logger.h"
+
+#define _TEST_MODE	1	// 테스트 코드 포함/제거용 디파인
 
 // 테트리스에서 사용되는 키 종류(크기는 char)
 enum class KeyType : char

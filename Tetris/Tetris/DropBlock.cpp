@@ -59,6 +59,29 @@ void DropBlock::Reset()
 	};
 }
 
+void DropBlock::MoveLeft()
+{
+	//Logger::Print("Input Left\n");
+	currentPosition.x--;
+	if (onMoveSide && !onMoveSide(*this))	
+	{
+		// onMoveSide에 함수가 들어있고, 함수를 실행시킨 결과가 false가 돌아왔다
+		currentPosition.x++;	// 다시 롤백
+	}
+
+}
+
+void DropBlock::MoveRight()
+{
+	//Logger::Print("Input Right\n");
+	currentPosition.x++;
+	if (onMoveSide && !onMoveSide(*this))
+	{
+		// onMoveSide에 함수가 들어있고, 함수를 실행시킨 결과가 false가 돌아왔다
+		currentPosition.x--;	// 다시 롤백
+	}
+}
+
 Tetromino* DropBlock::GetRandomTetromino()
 {
 	if (bag.empty())					// 가방이 비었으면

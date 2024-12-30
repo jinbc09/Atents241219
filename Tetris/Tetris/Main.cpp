@@ -2,8 +2,6 @@
 #include "GameManager.h"
 #include "Test.h"
 
-#define _TEST_MODE	1	// 테스트 코드 포함/제거용 디파인
-
 int main()
 {
 	SetConsoleOutputCP(CP_UTF8);
@@ -23,7 +21,7 @@ int main()
 	manager.Initialize();
 
 #ifdef _TEST_MODE		
-	test.Test_Input_System();
+	// test.Test_Input_System();
 	test.Test_Random();
 #endif
 

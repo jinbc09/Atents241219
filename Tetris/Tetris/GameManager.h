@@ -33,7 +33,9 @@ public:
 		pInput->BindRelease(type, func, obj);
 	}
 
+#ifdef _TEST_MODE
 	inline void Test_Stage_7Bag() { pStage->Test_7Bag(); }
+#endif
 
 private:
 	GameManager() = default;

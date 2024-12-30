@@ -12,8 +12,15 @@ public:
 	// current를 리셋하고 위치를 초기화하는 함수
 	void Reset();
 
+	void MoveLeft();	// 왼쪽으로 한칸 움직이는 함수
+	void MoveRight();	// 오른쪽으로 한칸 움직이는 함수
+
 	inline const Tetromino* GetCurrent() const { return current; }
 	inline const Position& GetCurrentPosition() const { return currentPosition; }
+
+	// 좌우로 움직였음을 알리는 함수 객체(리턴값이 true면 정상적으로 이동 할 수 있다. false면 이동 불가능한 지역으로 이동했다)
+	std::function<bool(const DropBlock&)> onMoveSide = nullptr;
+
 private:
 	enum class MinoType : char
 	{

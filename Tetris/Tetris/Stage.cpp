@@ -9,6 +9,8 @@ void Stage::Initialize()
 	// 드랍블럭 초기화
 	pDropBlock = new DropBlock();
 	pDropBlock->Initialize();
+
+	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
 }
 
 void Stage::Destroy()
@@ -61,4 +63,27 @@ void Stage::DataToText()
 		}
 		strcat_s(renderText, canvasTextArraySize, "\n");
 	}
+}
+
+bool Stage::CheckValidPosition(const DropBlock& block)
+{
+	const Position* pTargetPosition = &block.GetCurrentPosition();		// 현재 위치
+	const Position* pMinoPositions = block.GetCurrent()->GetMinos();	// 각각의 위치
+
+	bool isSuccess = true;
+		
+	int size = static_cast<int>(Tetromino::TetroCount);
+	for (int i = 0; i < size; i++)
+	{
+		Position minoPos = *pTargetPosition + *(pMinoPositions + i);	// 현재 위치 + 각각의 위치(i번째)
+		if (!(minoPos.x >= 0 && minoPos.x < StageWidth)			// 위치 중 하나가 좌우의 경계랑 겹치거나 나갔다.
+			|| !(minoPos.y >= 0 && minoPos.y < LinesHeight)		// 위치 중 하나가 위아래의 경계랑 겹치거나 나갔다.
+			/*바닥에 쌓인 블럭과 체크 필요*/)
+		{
+			isSuccess = false;
+			break;
+		}
+	}
+
+	return isSuccess;
 }
