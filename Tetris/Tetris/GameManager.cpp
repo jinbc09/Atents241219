@@ -35,6 +35,9 @@ void GameManager::Initialize()
 
 bool GameManager::Loop()
 {
+	if (isGameOver)
+		return false;
+
 	clock_t current = clock();
 	deltaTime = static_cast<float>(current - lastTime) / CLOCKS_PER_SEC;
 	lastTime = current;
@@ -71,6 +74,11 @@ void GameManager::Destroy()
 	}
 	systems.clear();
 
+}
+
+void GameManager::ExcuteGameOver()
+{
+	isGameOver = true;
 }
 
 void GameManager::SetConsoleFont(const wchar_t* fontName, SHORT sizeX, SHORT sizeY)

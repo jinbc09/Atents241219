@@ -1,4 +1,7 @@
 #include "Stage.h"
+#include "Random.h"
+#include "Logger.h"
+#include "GameManager.h"
 
 void Stage::Initialize()
 {
@@ -143,7 +146,8 @@ void Stage::HardDropProcess(const DropBlock& block)
 	// 게임 오버가 되었는지 안되었는지 체크
 	if( CheckGameOver() )
 	{
-		Logger::Print("Game Over!");
+		Logger::Print("Game Over!\n");
+		GameManager::Get().ExcuteGameOver();
 	}	
 }
 
@@ -259,8 +263,31 @@ void Stage::ClearFullLines(int start, int end)
 void Stage::GeneratePenaltyBlocks()
 {
 	// 모든 라인을 위로 한칸 옮기기
+	memmove(&lineData[0][0], &lineData[1][0], sizeof(CellType) * StageWidth * (LinesHeight - 1));
+
 	// 마지막줄에 블럭들을 랜덤하게 생성하기(각 칸별로 80% 확률로 생성)
+	for (int i = 0; i < StageWidth; i++)
+	{
+		if (Random::Get().GetRandomFloat() < 0.9f)
+		{
+			// 90% 확률
+			lineData[LinesHeight - 1][i] = CellType::Line;
+		}
+		else
+		{
+			// 10% 확률
+			lineData[LinesHeight - 1][i] = CellType::Blank;
+		}
+	}
+	int index = Random::Get().GetRandom(10);
+	lineData[LinesHeight - 1][index] = CellType::Blank;	// 하나는 확정
+
 	// 게임 오버 체크
+	if (CheckGameOver())
+	{
+		Logger::Print("Game Over!\n");
+		GameManager::Get().ExcuteGameOver();
+	}
 }
 
 bool Stage::CheckGameOver()
