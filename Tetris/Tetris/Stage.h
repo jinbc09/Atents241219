@@ -65,6 +65,9 @@ private:
 	/// <param name="end">체크가 끝날 줄(제일 윗줄)</param>
 	void ClearFullLines(int start, int end);
 
+	// 게임 오버인지 체크하는 함수(true면 게임오버, false면 게임오버가 아님)
+	bool CheckGameOver();
+
 	static const unsigned int StageWidth = 10;		// 게임 판의 가로 길이
 	static const unsigned int StageHeight = 20;		// 게임 판의 세로 길이
 

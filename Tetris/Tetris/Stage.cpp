@@ -2,6 +2,9 @@
 
 void Stage::Initialize()
 {
+	// 라인데이터 초기화
+	memset(lineData, static_cast<char>(CellType::Blank), sizeof(CellType) * StageWidth * LinesHeight);
+
 	// 출력 텍스트 초기화
 	renderText = new char[canvasTextArraySize];
 	memset(renderText, 0, canvasTextArraySize);	// canvasText를 0으로 채우기, char 크기는 1
@@ -43,6 +46,16 @@ void Stage::DataToText()
 	memcpy(canvas, StageBackground, sizeof(CellType) * FullWidth * FullHeight);		
 
 	// 라인 데이터 넣기
+	for (int y = 0; y < LinesHeight; y++)
+	{
+		for (int x = 0; x < StageWidth; x++)
+		{
+			if (lineData[y][x] == CellType::Line)	// line만 기록(멀쩡한 부분이 덮어써지는 것을 방지)
+			{
+				canvas[Origin.y + y][Origin.x + x] = CellType::Line;
+			}
+		}
+	}
 
 	// 블록 데이터 넣기
 	 const Position* pPositions = pDropBlock->GetCurrent()->GetMinos();
@@ -101,10 +114,16 @@ void Stage::HardDropProcess(const DropBlock& block)
 	//		한줄이 가득 찼는지 확인
 	//			해당 줄 삭제
 	//			삭제된 줄 윗줄을 모두 아래로 내리기
-	//		게임 오버가 되었는지 안되었는지 체크
 	AddLine(groundPosition, block);
 
-	// block 리셋
+	// block 리셋(임시로 const 제거)	
+	const_cast<DropBlock&>(block).Reset();
+
+	// 게임 오버가 되었는지 안되었는지 체크
+	if( CheckGameOver() )
+	{
+		Logger::Print("Game Over!");
+	}	
 }
 
 Position Stage::FindGroundPosition(const Position& blockPosition, const Position* pMinoPositions)
@@ -130,7 +149,22 @@ Position Stage::FindGroundPosition(const Position& blockPosition, const Position
 
 bool Stage::CheckMovablePosition(const Position& basePosition, const Position* pMinoPositions)
 {
-	return false;
+	bool isSuccess = true;
+	int size = Tetromino::TetroCount;
+	for (int i = 0; i < size; i++)
+	{
+		Position minoPosition = basePosition + *(pMinoPositions + i);
+		{
+			if (minoPosition.y >= static_cast<int>(LinesHeight)					// 밖을 벗어났거나 Blank가 아니면
+				|| lineData[minoPosition.y][minoPosition.x] != CellType::Blank)
+			{
+				isSuccess = false;	// 못가는 위치다.
+				break;
+			}
+		}
+	}
+
+	return isSuccess;
 }
 
 void Stage::AddLine(Position& basePosition, const DropBlock& block)
@@ -149,7 +183,7 @@ void Stage::AddLine(Position& basePosition, const DropBlock& block)
 		maxY = max(maxY, minoPos.y);
 	}
 
-	ClearFullLines(maxY, minY - 1);
+	ClearFullLines(maxY, minY - 1);	// 가득찬 줄 제거 처리
 }
 
 void Stage::ClearFullLines(int start, int end)
@@ -157,8 +191,42 @@ void Stage::ClearFullLines(int start, int end)
 	std::vector<int> fullLines;	// 가득 찬 줄의 번호들을 기록하는 벡터
 	fullLines.reserve(4);		// 한번에 제거 가능한 줄은 최대 4줄이니까
 
-	for (int y = start; y > end; y--)
-	{
+	const CellType fullLineData[StageWidth] = {
+		CellType::Line, CellType::Line, CellType::Line, CellType::Line, CellType::Line,
+		CellType::Line, CellType::Line, CellType::Line, CellType::Line, CellType::Line
+	};
 
+	for (int y = start; y > end; y--)	// 시작이 아래쪽
+	{
+		if (memcmp(fullLineData, lineData[y], sizeof(fullLineData)) == 0)	// 가득찬 줄인지 확인
+		{
+			fullLines.push_back(y);	// 가득찬 줄이면 줄번호를 기록
+		}
 	}
+
+	// 가득 찬 줄을 위에서부터 제거
+	for (auto rIter = fullLines.rbegin(); rIter != fullLines.rend(); rIter++)
+	{
+		// 첫줄부터 가득찬 줄 앞까지 통채로 한줄 내리기
+		memmove(&lineData[1][0], &lineData[0][0], sizeof(CellType) * StageWidth * (*rIter));	
+	}
+}
+
+bool Stage::CheckGameOver()
+{
+	const CellType emptyLineData[StageWidth] = {
+		CellType::Blank, CellType::Blank, CellType::Blank, CellType::Blank, CellType::Blank,
+		CellType::Blank, CellType::Blank, CellType::Blank, CellType::Blank, CellType::Blank
+	};
+
+	bool isGameOver = false;
+	for (int y = 0; y < SpawnHeight; y++)
+	{
+		if (memcmp(emptyLineData, lineData[y], sizeof(emptyLineData)) != 0)
+		{
+			isGameOver = true;
+			break;
+		}
+	}
+	return isGameOver;
 }
