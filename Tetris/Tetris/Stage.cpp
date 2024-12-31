@@ -14,8 +14,8 @@ void Stage::Initialize()
 	pDropBlock->Initialize();
 
 	pDropBlock->onMoveDown = std::bind(&Stage::MoveDownProcess, this, std::placeholders::_1);
-	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
-	pDropBlock->onSpin = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
+	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1, nullptr);
+	pDropBlock->onSpin = std::bind(&Stage::WallKickProcess, this, std::placeholders::_1);
 	pDropBlock->onHardDrop = std::bind(&Stage::HardDropProcess, this, std::placeholders::_1);
 }
 
@@ -81,10 +81,12 @@ void Stage::DataToText()
 	}
 }
 
-bool Stage::CheckValidPosition(const DropBlock& block)
+bool Stage::CheckValidPosition(const DropBlock& block, const Position* pTargetPosition)
 {
-	const Position* pTargetPosition = &block.GetCurrentPosition();		// 현재 위치
 	const Position* pMinoPositions = block.GetCurrent()->GetMinos();	// 각각의 위치
+
+	if(pTargetPosition == nullptr)
+		pTargetPosition = &block.GetCurrentPosition();		// 현재 위치
 
 	bool isSuccess = true;
 		
@@ -92,9 +94,9 @@ bool Stage::CheckValidPosition(const DropBlock& block)
 	for (int i = 0; i < size; i++)
 	{
 		Position minoPos = *pTargetPosition + *(pMinoPositions + i);	// 현재 위치 + 각각의 위치(i번째)
-		if (!(minoPos.x >= 0 && minoPos.x < StageWidth)			// 위치 중 하나가 좌우의 경계랑 겹치거나 나갔다.
-			|| !(minoPos.y >= 0 && minoPos.y < LinesHeight)		// 위치 중 하나가 위아래의 경계랑 겹치거나 나갔다.
-			/*바닥에 쌓인 블럭과 체크 필요*/)
+		if (!(minoPos.x >= 0 && minoPos.x < StageWidth)					// 위치 중 하나가 좌우의 경계랑 겹치거나 나갔다.
+			|| !(minoPos.y >= 0 && minoPos.y < LinesHeight)				// 위치 중 하나가 위아래의 경계랑 겹치거나 나갔다.
+			|| lineData[minoPos.y][minoPos.x] != CellType::Blank)		// 빈칸이 아닌 경우
 		{
 			isSuccess = false;
 			break;
@@ -137,6 +139,29 @@ void Stage::HardDropProcess(const DropBlock& block)
 	{
 		Logger::Print("Game Over!");
 	}	
+}
+
+bool Stage::WallKickProcess(const DropBlock& block)
+{
+	bool isSuccess = CheckValidPosition(block);
+	if (!isSuccess)
+	{
+		const Position kickTable[5] = { {1,0}, {-1,0}, {0,-1}, {2,0}, {-2,0} };	// 5개의 방향 확인
+		int kickCount = 5;
+		Position basePosition = block.GetCurrentPosition();
+
+		for (int i = 0; i < kickCount; i++)
+		{
+			Position target = basePosition + kickTable[i];	// 기본 위치에서 킥테이블에 지정된만큼 이동한 위치를 체크
+			isSuccess = CheckValidPosition(block, &target);
+			if (isSuccess)
+			{
+				const_cast<DropBlock&>(block).SetCurrentPosition(target);	// 새 위치로 이동이 가능하면 위치 재설정하고 종료
+				break;
+			}
+		}
+	}
+	return isSuccess;
 }
 
 Position Stage::FindGroundPosition(const Position& blockPosition, const Position* pMinoPositions)

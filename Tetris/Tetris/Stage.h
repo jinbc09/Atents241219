@@ -29,8 +29,9 @@ private:
 	/// block이 현재 존재 할 수 있는 위치에 있는지 체크하는 함수
 	/// </summary>
 	/// <param name="block">체크할 블록</param>
+	/// <param name="pTargetPosition">체크할 위치(null이면 블록의 위치를 사용)</param>
 	/// <returns>true면 이동할 수 있는 위치에 있다. false면 이동 불가능한 위치에 있다.</returns>
-	bool CheckValidPosition(const DropBlock& block);
+	bool CheckValidPosition(const DropBlock& block, const Position* pTargetPosition = nullptr);
 
 	/// <summary>
 	/// block이 한칸 아래로 내려온 상황에서 처리해야 할 일을 하는 함수
@@ -41,6 +42,9 @@ private:
 
 	// 하드드랍 처리용 함수
 	void HardDropProcess(const DropBlock& block);
+
+	// 월킥 처리용 함수(리턴이 true면 월킥 성공, false면 실패)
+	bool WallKickProcess(const DropBlock& block);
 
 	/// <summary>
 	/// 블럭 떨어질 때의 바닥을 찾는 함수

@@ -24,6 +24,9 @@ public:
 	inline const Tetromino* GetCurrent() const { return current; }
 	inline const Position& GetCurrentPosition() const { return currentPosition; }
 
+	// setter
+	inline void SetCurrentPosition(const Position& pos) { currentPosition = pos; }
+
 	// 좌우로 움직였음을 알리는 함수 객체(리턴값이 true면 정상적으로 이동 할 수 있다. false면 이동 불가능한 지역으로 이동했다)
 	std::function<bool(const DropBlock&)> onMoveSide = nullptr;	
 	std::function<bool(const DropBlock&)> onMoveDown = nullptr;	// 아래로 한칸 내려갔음을 알리는 함수 객체
