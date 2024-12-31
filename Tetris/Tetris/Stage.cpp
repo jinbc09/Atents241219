@@ -94,10 +94,71 @@ void Stage::HardDropProcess(const DropBlock& block)
 {
 	// block을 바닥까지 내리기
 	//		바닥 찾기(stage의 바닥이거나 라인에 처음 닿는 부분)
+	Position groundPosition = FindGroundPosition(block.GetCurrentPosition(), block.GetCurrent()->GetMinos());
+
+
 	// 바닥에 닿은 block을 라인에 추가하기
 	//		한줄이 가득 찼는지 확인
 	//			해당 줄 삭제
 	//			삭제된 줄 윗줄을 모두 아래로 내리기
 	//		게임 오버가 되었는지 안되었는지 체크
+	AddLine(groundPosition, block);
+
 	// block 리셋
+}
+
+Position Stage::FindGroundPosition(const Position& blockPosition, const Position* pMinoPositions)
+{
+	Position check = { blockPosition.x, 0 };
+	int startY = max(0, blockPosition.y);		// 블럭 크기가 3*3인경우는 1이고 2*2인 경우는 2다.
+	int endY = static_cast<int>(LinesHeight);	// Y의 최대 크기
+	bool isSuccess = true;						// 처음으로 실패(블럭이 이동 불가능)한 Y위치를 찾기 위한 bool
+
+	for (int y = startY; isSuccess && (y < endY); y++)	// 종료조건은 처음으로 실패하거나 y가 스테이지의 끝까지 갔을 때
+	{
+		check.y = y;
+		isSuccess = CheckMovablePosition(check, pMinoPositions);	// 이동 가능한지 확인
+	}
+
+	if (!isSuccess)
+	{
+		check.y--;	// 중간에 못가는 지역이 있어서 for문이 끝났다면 check의 y를 1 감소(마지막으로 성공한 위치)
+	}
+
+	return check;
+}
+
+bool Stage::CheckMovablePosition(const Position& basePosition, const Position* pMinoPositions)
+{
+	return false;
+}
+
+void Stage::AddLine(Position& basePosition, const DropBlock& block)
+{
+	int minY = FullHeight;
+	int maxY = -1;
+
+	const Position* pMinoPositions = block.GetCurrent()->GetMinos();
+	int size = static_cast<int>(Tetromino::TetroCount);
+	for (int i = 0; i < size; i++)
+	{
+		Position minoPos = basePosition + *(pMinoPositions + i);	// pMinoPositions에 있는 항목들을 하나씩 basePosition에 더한다.
+		lineData[minoPos.y][minoPos.x] = CellType::Line;
+
+		minY = min(minY, minoPos.y);
+		maxY = max(maxY, minoPos.y);
+	}
+
+	ClearFullLines(maxY, minY - 1);
+}
+
+void Stage::ClearFullLines(int start, int end)
+{
+	std::vector<int> fullLines;	// 가득 찬 줄의 번호들을 기록하는 벡터
+	fullLines.reserve(4);		// 한번에 제거 가능한 줄은 최대 4줄이니까
+
+	for (int y = start; y > end; y--)
+	{
+
+	}
 }
