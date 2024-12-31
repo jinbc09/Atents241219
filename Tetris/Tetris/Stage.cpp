@@ -33,6 +33,12 @@ void Stage::Destroy()
 
 void Stage::Update(float deltaTime)
 {
+	penaltyElapsedTime += deltaTime;
+	if (penaltyElapsedTime > penaltyInterval)
+	{
+		GeneratePenaltyBlocks();	// 주기적으로 패널티 블록 생성
+		penaltyElapsedTime = 0.0f;
+	}
 	pDropBlock->Update(deltaTime);
 
 	DataToText();	// 마지막 줄에 있어야 함
@@ -248,6 +254,13 @@ void Stage::ClearFullLines(int start, int end)
 		// 첫줄부터 가득찬 줄 앞까지 통채로 한줄 내리기
 		memmove(&lineData[1][0], &lineData[0][0], sizeof(CellType) * StageWidth * (*rIter));	
 	}
+}
+
+void Stage::GeneratePenaltyBlocks()
+{
+	// 모든 라인을 위로 한칸 옮기기
+	// 마지막줄에 블럭들을 랜덤하게 생성하기(각 칸별로 80% 확률로 생성)
+	// 게임 오버 체크
 }
 
 bool Stage::CheckGameOver()

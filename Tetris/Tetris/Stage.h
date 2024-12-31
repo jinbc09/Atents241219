@@ -76,6 +76,9 @@ private:
 	/// <param name="end">체크가 끝날 줄(제일 윗줄)</param>
 	void ClearFullLines(int start, int end);
 
+	// 패널티 블록들을 생성하는 함수
+	void GeneratePenaltyBlocks();
+
 	// 게임 오버인지 체크하는 함수(true면 게임오버, false면 게임오버가 아님)
 	bool CheckGameOver();
 
@@ -170,6 +173,12 @@ private:
 
 	// 게임 내 원점
 	const Position Origin = { 1, 0 };
+
+	// 패널티 블록 생성 주기
+	float penaltyInterval = 5.0f;
+
+	// 마지막 패널티 블록 생성 시점에서 지난 시간
+	float penaltyElapsedTime = 0.0f;
 	
 };
 
