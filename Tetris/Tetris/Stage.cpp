@@ -123,6 +123,13 @@ bool Stage::MoveDownProcess(const DropBlock& block)
 	{
 		position.y--;	// 한칸 위쪽으로 처리
 		AddLine(position, block);
+
+		// 게임 오버가 되었는지 안되었는지 체크
+		if (CheckGameOver())
+		{
+			Logger::Print("Game Over!\n");
+			GameManager::Get().ExcuteGameOver();
+		}
 	}
 	return isMovable;
 }
