@@ -27,6 +27,8 @@ void GameManager::Initialize()
 	pInput->BindPress(KeyType::Right, &DropBlock::MoveRight, pDropBlock);
 	pInput->BindPress(KeyType::Spin, &DropBlock::Spin, pDropBlock);
 	pInput->BindPress(KeyType::HardDrop, &DropBlock::HardDrop, pDropBlock);
+	pInput->BindPress(KeyType::SoftDrop, [pDropBlock]() { pDropBlock->MoveFast(true); });
+	pInput->BindRelease(KeyType::SoftDrop, [pDropBlock]() { pDropBlock->MoveFast(false); });
 
 	lastTime = clock();
 }
@@ -35,6 +37,7 @@ bool GameManager::Loop()
 {
 	clock_t current = clock();
 	deltaTime = static_cast<float>(current - lastTime) / CLOCKS_PER_SEC;
+	lastTime = current;
 
 	for (auto sys : systems)
 	{

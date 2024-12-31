@@ -32,6 +32,13 @@ private:
 	/// <returns>true면 이동할 수 있는 위치에 있다. false면 이동 불가능한 위치에 있다.</returns>
 	bool CheckValidPosition(const DropBlock& block);
 
+	/// <summary>
+	/// block이 한칸 아래로 내려온 상황에서 처리해야 할 일을 하는 함수
+	/// </summary>
+	/// <param name="block">내려온 블록</param>
+	/// <returns>true 성공적으로 내려옴, false면 막혀서 못내려감</returns>
+	bool MoveDownProcess(const DropBlock& block);
+
 	// 하드드랍 처리용 함수
 	void HardDropProcess(const DropBlock& block);
 

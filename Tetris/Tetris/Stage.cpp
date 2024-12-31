@@ -13,6 +13,7 @@ void Stage::Initialize()
 	pDropBlock = new DropBlock();
 	pDropBlock->Initialize();
 
+	pDropBlock->onMoveDown = std::bind(&Stage::MoveDownProcess, this, std::placeholders::_1);
 	pDropBlock->onMoveSide = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
 	pDropBlock->onSpin = std::bind(&Stage::CheckValidPosition, this, std::placeholders::_1);
 	pDropBlock->onHardDrop = std::bind(&Stage::HardDropProcess, this, std::placeholders::_1);
@@ -101,6 +102,18 @@ bool Stage::CheckValidPosition(const DropBlock& block)
 	}
 
 	return isSuccess;
+}
+
+bool Stage::MoveDownProcess(const DropBlock& block)
+{
+	Position position = block.GetCurrentPosition();
+	bool isMovable = CheckMovablePosition(position, block.GetCurrent()->GetMinos());
+	if (!isMovable)
+	{
+		position.y--;	// 한칸 위쪽으로 처리
+		AddLine(position, block);
+	}
+	return isMovable;
 }
 
 void Stage::HardDropProcess(const DropBlock& block)
